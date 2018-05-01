@@ -1,0 +1,10 @@
+F:\Left\Projects_E\wuxian\wuxian\bin\Release\wuxian.exe.config
+F:\Left\Projects_E\wuxian\wuxian\bin\Release\wuxian.exe
+F:\Left\Projects_E\wuxian\wuxian\bin\Release\wuxian.pdb
+F:\Left\Projects_E\wuxian\wuxian\obj\Release\wuxian.Form_Main.resources
+F:\Left\Projects_E\wuxian\wuxian\obj\Release\wuxian.Form_SerialPortSetting.resources
+F:\Left\Projects_E\wuxian\wuxian\obj\Release\wuxian.Properties.Resources.resources
+F:\Left\Projects_E\wuxian\wuxian\obj\Release\wuxian.csproj.GenerateResource.cache
+F:\Left\Projects_E\wuxian\wuxian\obj\Release\wuxian.csproj.CoreCompileInputs.cache
+F:\Left\Projects_E\wuxian\wuxian\obj\Release\wuxian.exe
+F:\Left\Projects_E\wuxian\wuxian\obj\Release\wuxian.pdb

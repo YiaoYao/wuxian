@@ -1,0 +1,65 @@
+
+body {
+    margin : 0px;
+    padding : 0px;
+    background-color : gray;
+}
+
+.div.top {
+    width: 360px;
+    height: 72px;
+    background-color : rgb(255, 255, 255);
+    margin: auto;
+    -webkit-user-select : none;
+    -ms-user-select : none;
+    cursor : default;
+    text-align : center;
+    line-height : 70px;
+    font-family : 'Microsoft YaHei UI';
+    font-size : x-large;
+    font-weight : 600;
+    letter-spacing : 2px;
+    color : rgb(32, 32, 32);
+}
+
+.div.middle {
+    width: 360px;
+    height: 380px;
+    background-color : rgb(192, 192, 192);
+    margin: 4px auto;
+    overflow : hidden;
+}
+
+.div.combo {
+    width: 240px;
+    height: 36px;
+    background-color: transparent;
+    margin: 30px auto;
+    display : flex;
+}
+
+.div.tag {
+    width : 80px;
+    height : 36px;
+    background-color : transparent;
+    -webkit-user-select : none;
+    -ms-user-select : none;
+    cursor : default;
+    font-family : 'Microsoft YaHei UI';
+    font-size : 13pt;
+    font-weight : 600;
+    text-align : right;
+    line-height : 36px;
+}
+
+.div.select {
+    width : 160px;
+    height : 36px;
+}
+
+.div.bottom {
+    width : 360px;
+    height : 80px;
+    background-color : rgb(255, 255, 255);
+    margin : auto;
+}
