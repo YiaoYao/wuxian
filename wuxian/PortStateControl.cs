@@ -182,7 +182,8 @@ namespace wuxian
 					MessageBox.Show("当前串口无法打开");
 					return;
 				}
-				TimerGetData.Start();
+				//TimerGetData.Start();
+				SelectedSerialPort.Write("f" + Environment.NewLine);
 				Label_Open.Text = "关闭";
 			}
 			else
