@@ -30,43 +30,53 @@
 		{
 			this.ComboBox_SerialPortList = new System.Windows.Forms.ComboBox();
 			this.Label_Open = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
+			this.Label_More = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// ComboBox_SerialPortList
 			// 
+			this.ComboBox_SerialPortList.BackColor = System.Drawing.Color.LightGray;
 			this.ComboBox_SerialPortList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.ComboBox_SerialPortList.FormattingEnabled = true;
 			this.ComboBox_SerialPortList.Location = new System.Drawing.Point(40, 10);
 			this.ComboBox_SerialPortList.Name = "ComboBox_SerialPortList";
 			this.ComboBox_SerialPortList.Size = new System.Drawing.Size(120, 33);
 			this.ComboBox_SerialPortList.TabIndex = 1;
+			this.ComboBox_SerialPortList.SelectedIndexChanged += new System.EventHandler(this.ComboBox_SerialPortList_SelectedIndexChanged);
 			// 
 			// Label_Open
 			// 
-			this.Label_Open.BackColor = System.Drawing.Color.White;
+			this.Label_Open.BackColor = System.Drawing.Color.LightGray;
 			this.Label_Open.Location = new System.Drawing.Point(50, 65);
 			this.Label_Open.Name = "Label_Open";
 			this.Label_Open.Size = new System.Drawing.Size(100, 60);
 			this.Label_Open.TabIndex = 2;
 			this.Label_Open.Text = "打开";
 			this.Label_Open.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.Label_Open.Click += new System.EventHandler(this.Label_Open_Click);
+			this.Label_Open.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Label_Open_MouseDown);
+			this.Label_Open.MouseEnter += new System.EventHandler(this.Label_Open_MouseEnter);
+			this.Label_Open.MouseLeave += new System.EventHandler(this.Label_Open_MouseLeave);
 			// 
-			// label1
+			// Label_More
 			// 
-			this.label1.BackColor = System.Drawing.Color.White;
-			this.label1.Location = new System.Drawing.Point(50, 140);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(100, 60);
-			this.label1.TabIndex = 2;
-			this.label1.Text = "详细";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.Label_More.BackColor = System.Drawing.Color.LightGray;
+			this.Label_More.Location = new System.Drawing.Point(50, 140);
+			this.Label_More.Name = "Label_More";
+			this.Label_More.Size = new System.Drawing.Size(100, 60);
+			this.Label_More.TabIndex = 2;
+			this.Label_More.Text = "详细";
+			this.Label_More.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.Label_More.Click += new System.EventHandler(this.Label_More_Click);
+			this.Label_More.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Label_More_MouseDown);
+			this.Label_More.MouseEnter += new System.EventHandler(this.Label_More_MouseEnter);
+			this.Label_More.MouseLeave += new System.EventHandler(this.Label_More_MouseLeave);
 			// 
 			// PortStateControl
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.BackColor = System.Drawing.Color.Transparent;
-			this.Controls.Add(this.label1);
+			this.Controls.Add(this.Label_More);
 			this.Controls.Add(this.Label_Open);
 			this.Controls.Add(this.ComboBox_SerialPortList);
 			this.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -79,6 +89,6 @@
 		#endregion
 		private System.Windows.Forms.ComboBox ComboBox_SerialPortList;
 		private System.Windows.Forms.Label Label_Open;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label Label_More;
 	}
 }

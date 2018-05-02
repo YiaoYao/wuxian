@@ -127,7 +127,20 @@ namespace wuxian
 		{
 			if (Button_Open.Text == "打开")
 			{
-				destinationPort.Open();
+				try
+				{
+					destinationPort.Open();
+				}
+				catch (UnauthorizedAccessException)
+				{
+					MessageBox.Show("当前串口无法打开");
+					return;
+				}
+				catch (System.IO.IOException)
+				{
+					MessageBox.Show("当前串口无法打开");
+					return;
+				}
 				Button_Open.Text = "关闭";
 			}
 			else

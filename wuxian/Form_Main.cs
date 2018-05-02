@@ -5,57 +5,15 @@ using System.Data.OleDb;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
+using DataUnit = wuxian.PortStateControl.DataUnit;
 
 namespace wuxian
 {
 	public partial class Form_Main : Form
 	{
-		public struct DataUnit
-		{
-			public DateTime Time;
-			public float PrimaryVoltage;
-			public float PrimaryCurrent;
-			public float SecondaryVoltage;
-			public float SecondaryCurrent;
-			public float distance;
-			public float height;
-
-			public DataUnit(DateTime dt, float[] data)
-			{
-				Time = dt;
-				if (data.Length == 6)
-				{
-					PrimaryVoltage = data[0];
-					PrimaryCurrent = data[1];
-					SecondaryVoltage = data[2];
-					SecondaryCurrent = data[3];
-					distance = data[4];
-					height = data[5];
-				}
-				else
-				{
-					PrimaryVoltage = 1.0f;
-					PrimaryCurrent = 1.0f;
-					SecondaryVoltage = 1.0f;
-					SecondaryCurrent = 1.0f;
-					distance = 1.0f;
-					height = 1.0f;
-				}
-			}
-
-			public override string ToString()
-			{
-				return string.Format("{0:N2}, {1:N2}, {2:N2}, {3:N2}, {4:N2}, {5:N2}", PrimaryVoltage, PrimaryCurrent, SecondaryVoltage, SecondaryCurrent, distance, height);
-			}
-		}
-
 		private bool isTitleMouseDown = false;
 		private Point lastMousePosition = new Point(0, 0);
-		private List<DataUnit> dataUnits = new List<DataUnit>(240);
-		private SerialPort selectedSerialPort = new SerialPort();
-		private Form_SerialPortSetting.SerialPortConfig serialPortConfig;
 		private Timer timerRefreshChart = new Timer();
-		private Timer timerGetData = new Timer();
 		private Series[] ChartSeries = new Series[4];
 		private DataSimulator dataSimulator = new DataSimulator();
 		private PortStateControl StateControl = new PortStateControl();
@@ -74,8 +32,6 @@ namespace wuxian
 
 			CheckForIllegalCrossThreadCalls = false;
 
-			selectedSerialPort.DataReceived += new SerialDataReceivedEventHandler(selectedSerialPort_DataReceived);
-
 			Panel_Title.BackColor = Color.FromArgb(40, 0, 0, 0);
 			Panel_Minimize.BackColor = Color.FromArgb(0, 0, 0, 0);
 			Panel_Close.BackColor = Color.FromArgb(0, 0, 0, 0);
@@ -87,21 +43,8 @@ namespace wuxian
 			Button_DataSimulate.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 255, 255, 255);
 			Button_DataSimulate.FlatAppearance.MouseDownBackColor = Color.FromArgb(32, 0, 0, 0);
 
-			serialPortConfig.BaudRate = 115200;
-			serialPortConfig.DataBits = 8;
-			serialPortConfig.StopBits = StopBits.One;
-			serialPortConfig.Parity = Parity.None;
-
-			selectedSerialPort.BaudRate = serialPortConfig.BaudRate;
-			selectedSerialPort.DataBits = serialPortConfig.DataBits;
-			selectedSerialPort.StopBits = serialPortConfig.StopBits;
-			selectedSerialPort.Parity = serialPortConfig.Parity;
-
 			timerRefreshChart.Interval = 50;
 			timerRefreshChart.Tick += new EventHandler(timerRefreshChart_Tick);
-
-			timerGetData.Interval = 50;
-			timerGetData.Tick += new EventHandler(timerGetData_Tick);
 
 			Chart_Voltage.Series.Clear();
 			Chart_Current.Series.Clear();
@@ -132,33 +75,15 @@ namespace wuxian
 		{
 			timerRefreshChart.Start();
 		}
-
-		private void selectedSerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
-		{
-			string source = selectedSerialPort.ReadExisting();
-			string[] strData = (source.TrimEnd()).Split(',');
-			if (strData.Length != 6) return;
-			float[] data = new float[6];
-			for (int i = 0; i < 6; i++)
-				if (!float.TryParse(strData[i], out data[i])) return;
-
-			if (dataUnits.Count >= 240)
-				dataUnits.RemoveAt(0);
-			DateTime timeNow = DateTime.Now;
-			DataUnit NewData = new DataUnit(timeNow, data);
-			dataUnits.Add(NewData);
-			xqmove(NewData);
-			//chucun(NewData);
-		}
-
+		
 		private void timerRefreshChart_Tick(object sender, EventArgs e)
 		{
-			if (dataUnits.Count == 0) return;
+			if (StateControl.DataUnits.Count == 0) return;
 
 			DataUnit[] DataUnits;
 			try
 			{
-				DataUnits = dataUnits.ToArray();
+				DataUnits = StateControl.DataUnits.ToArray();
 			}
 			catch (ArgumentException)	//dataUnits在其他线程中被修改，引发异常
 			{
@@ -189,11 +114,6 @@ namespace wuxian
 				ChartSeries[2].Points.AddXY(time, DataUnits[i].SecondaryVoltage);
 				ChartSeries[3].Points.AddXY(time, DataUnits[i].SecondaryCurrent);
 			}
-		}
-
-		private void timerGetData_Tick(object sender, EventArgs e)
-		{
-			selectedSerialPort.Write("A");
 		}
 
 		private void Panel_Title_MouseDown(object sender, MouseEventArgs e)
@@ -295,18 +215,7 @@ namespace wuxian
 
 		private void button2_Click(object sender, EventArgs e)
 		{
-			if (button2.Text == "打开")
-			{
-				selectedSerialPort.Open();
-				timerGetData.Start();
-				button2.Text = "关闭";
-			}
-			else
-			{
-				if (selectedSerialPort.IsOpen) selectedSerialPort.Close();
-				timerGetData.Stop();
-				button2.Text = "打开";
-			}
+
 		}
 
 		private void chucun(DataUnit d1)
