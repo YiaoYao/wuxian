@@ -12,3 +12,17 @@ F:\Left\Projects_E\wuxian\wuxian\obj\Debug\wuxian.Form_Main.resources
 F:\Left\Projects_E\wuxian\wuxian\obj\Debug\wuxian.control.resources
 F:\Left\Projects_E\wuxian\wuxian\obj\Debug\wuxian.Form2.resources
 F:\Left\Projects_E\wuxian\wuxian\obj\Debug\wuxian.Form3.resources
+F:\GitHub\wuxian\wuxian\bin\Debug\wuxian.exe.config
+F:\GitHub\wuxian\wuxian\bin\Debug\wuxian.exe
+F:\GitHub\wuxian\wuxian\bin\Debug\wuxian.pdb
+F:\GitHub\wuxian\wuxian\obj\Debug\wuxian.csprojResolveAssemblyReference.cache
+F:\GitHub\wuxian\wuxian\obj\Debug\wuxian.control.resources
+F:\GitHub\wuxian\wuxian\obj\Debug\wuxian.Form2.resources
+F:\GitHub\wuxian\wuxian\obj\Debug\wuxian.Form3.resources
+F:\GitHub\wuxian\wuxian\obj\Debug\wuxian.Form_Main.resources
+F:\GitHub\wuxian\wuxian\obj\Debug\wuxian.Form_SerialPortSetting.resources
+F:\GitHub\wuxian\wuxian\obj\Debug\wuxian.Properties.Resources.resources
+F:\GitHub\wuxian\wuxian\obj\Debug\wuxian.csproj.GenerateResource.cache
+F:\GitHub\wuxian\wuxian\obj\Debug\wuxian.csproj.CoreCompileInputs.cache
+F:\GitHub\wuxian\wuxian\obj\Debug\wuxian.exe
+F:\GitHub\wuxian\wuxian\obj\Debug\wuxian.pdb

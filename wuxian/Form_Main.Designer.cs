@@ -40,11 +40,9 @@
 			this.Panel_Minimize = new System.Windows.Forms.Panel();
 			this.Panel_Close = new System.Windows.Forms.Panel();
 			this.Panel_Sidebar = new System.Windows.Forms.Panel();
-			this.Panel_DataSimulator = new System.Windows.Forms.Panel();
-			this.Button_OpenSimulator = new System.Windows.Forms.Button();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.Button_DataSimulate = new System.Windows.Forms.Button();
 			this.Button_SerialPortSetting = new System.Windows.Forms.Button();
+			this.Button_ErrorData = new System.Windows.Forms.Button();
 			this.Button_HistoryData = new System.Windows.Forms.Button();
 			this.Button_ManualControl = new System.Windows.Forms.Button();
 			this.Chart_Voltage = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -55,7 +53,6 @@
 			this.button2 = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.Chart_Current = new System.Windows.Forms.DataVisualization.Charting.Chart();
-			this.Button_ErrorData = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -63,7 +60,6 @@
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.Panel_Title.SuspendLayout();
 			this.Panel_Sidebar.SuspendLayout();
-			this.Panel_DataSimulator.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.Chart_Voltage)).BeginInit();
 			this.Panel_SerialPortState.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.Chart_Current)).BeginInit();
@@ -76,7 +72,7 @@
 			// 
 			// Panel_Title
 			// 
-			this.Panel_Title.BackColor = System.Drawing.Color.Transparent;
+			this.Panel_Title.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.Panel_Title.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Panel_Title.BackgroundImage")));
 			this.Panel_Title.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.Panel_Title.Controls.Add(this.Panel_Minimize);
@@ -117,7 +113,6 @@
 			// 
 			this.Panel_Sidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
 			this.Panel_Sidebar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.Panel_Sidebar.Controls.Add(this.Panel_DataSimulator);
 			this.Panel_Sidebar.Controls.Add(this.Button_DataSimulate);
 			this.Panel_Sidebar.Controls.Add(this.Button_SerialPortSetting);
 			this.Panel_Sidebar.Controls.Add(this.Button_ErrorData);
@@ -127,40 +122,6 @@
 			this.Panel_Sidebar.Name = "Panel_Sidebar";
 			this.Panel_Sidebar.Size = new System.Drawing.Size(200, 720);
 			this.Panel_Sidebar.TabIndex = 1;
-			// 
-			// Panel_DataSimulator
-			// 
-			this.Panel_DataSimulator.BackColor = System.Drawing.Color.Transparent;
-			this.Panel_DataSimulator.Controls.Add(this.Button_OpenSimulator);
-			this.Panel_DataSimulator.Controls.Add(this.comboBox1);
-			this.Panel_DataSimulator.Location = new System.Drawing.Point(0, 460);
-			this.Panel_DataSimulator.Name = "Panel_DataSimulator";
-			this.Panel_DataSimulator.Size = new System.Drawing.Size(200, 69);
-			this.Panel_DataSimulator.TabIndex = 2;
-			this.Panel_DataSimulator.Visible = false;
-			// 
-			// Button_OpenSimulator
-			// 
-			this.Button_OpenSimulator.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-			this.Button_OpenSimulator.FlatAppearance.BorderSize = 0;
-			this.Button_OpenSimulator.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.Button_OpenSimulator.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.Button_OpenSimulator.ForeColor = System.Drawing.Color.Black;
-			this.Button_OpenSimulator.Location = new System.Drawing.Point(126, 18);
-			this.Button_OpenSimulator.Name = "Button_OpenSimulator";
-			this.Button_OpenSimulator.Size = new System.Drawing.Size(71, 33);
-			this.Button_OpenSimulator.TabIndex = 1;
-			this.Button_OpenSimulator.Text = "打开";
-			this.Button_OpenSimulator.UseVisualStyleBackColor = true;
-			// 
-			// comboBox1
-			// 
-			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(12, 18);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(108, 33);
-			this.comboBox1.TabIndex = 0;
 			// 
 			// Button_DataSimulate
 			// 
@@ -189,6 +150,20 @@
 			this.Button_SerialPortSetting.Text = "串口设置";
 			this.Button_SerialPortSetting.UseVisualStyleBackColor = true;
 			this.Button_SerialPortSetting.Click += new System.EventHandler(this.Button_SerialPortSetting_Click);
+			// 
+			// Button_ErrorData
+			// 
+			this.Button_ErrorData.FlatAppearance.BorderSize = 0;
+			this.Button_ErrorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.Button_ErrorData.Font = new System.Drawing.Font("微软雅黑", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.Button_ErrorData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(255)))), ((int)(((byte)(160)))));
+			this.Button_ErrorData.Location = new System.Drawing.Point(0, 208);
+			this.Button_ErrorData.Name = "Button_ErrorData";
+			this.Button_ErrorData.Size = new System.Drawing.Size(200, 84);
+			this.Button_ErrorData.TabIndex = 0;
+			this.Button_ErrorData.Text = "故障数据";
+			this.Button_ErrorData.UseVisualStyleBackColor = true;
+			this.Button_ErrorData.Click += new System.EventHandler(this.Button_ErrorData_Click);
 			// 
 			// Button_HistoryData
 			// 
@@ -361,20 +336,6 @@
 			this.Chart_Current.TabIndex = 0;
 			this.Chart_Current.Text = "Current";
 			// 
-			// Button_ErrorData
-			// 
-			this.Button_ErrorData.FlatAppearance.BorderSize = 0;
-			this.Button_ErrorData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.Button_ErrorData.Font = new System.Drawing.Font("微软雅黑", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.Button_ErrorData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(255)))), ((int)(((byte)(160)))));
-			this.Button_ErrorData.Location = new System.Drawing.Point(0, 208);
-			this.Button_ErrorData.Name = "Button_ErrorData";
-			this.Button_ErrorData.Size = new System.Drawing.Size(200, 84);
-			this.Button_ErrorData.TabIndex = 0;
-			this.Button_ErrorData.Text = "历史数据";
-			this.Button_ErrorData.UseVisualStyleBackColor = true;
-			this.Button_ErrorData.Click += new System.EventHandler(this.Button_ErrorData_Click);
-			// 
 			// panel1
 			// 
 			this.panel1.Controls.Add(this.pictureBox3);
@@ -445,7 +406,6 @@
 			this.Load += new System.EventHandler(this.Form_Main_Load);
 			this.Panel_Title.ResumeLayout(false);
 			this.Panel_Sidebar.ResumeLayout(false);
-			this.Panel_DataSimulator.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.Chart_Voltage)).EndInit();
 			this.Panel_SerialPortState.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.Chart_Current)).EndInit();
@@ -469,9 +429,6 @@
 		private System.Windows.Forms.Button Button_SerialPortSetting;
 		private System.Windows.Forms.Button Button_HistoryData;
 		private System.Windows.Forms.Button Button_ManualControl;
-		private System.Windows.Forms.Panel Panel_DataSimulator;
-		private System.Windows.Forms.ComboBox comboBox1;
-		private System.Windows.Forms.Button Button_OpenSimulator;
 		private System.Windows.Forms.DataVisualization.Charting.Chart Chart_Voltage;
 		private System.Windows.Forms.Panel Panel_SerialPortState;
 		private System.Windows.Forms.Button button1;

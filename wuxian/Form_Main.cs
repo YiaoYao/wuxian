@@ -57,6 +57,7 @@ namespace wuxian
 		private Timer timerRefreshChart = new Timer();
 		private Timer timerGetData = new Timer();
 		private Series[] ChartSeries = new Series[4];
+		private DataSimulator dataSimulator = new DataSimulator();
 
 		public OleDbConnection c1 = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=shujuku.accdb");
 		public OleDbConnection c2 = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=guzhangku.accdb");
@@ -79,15 +80,11 @@ namespace wuxian
 			Panel_Close.BackColor = Color.FromArgb(0, 0, 0, 0);
 			Panel_Minimize.BackgroundImage = ImageList_Main.Images["picMin.png"];
 			Panel_Close.BackgroundImage = ImageList_Main.Images["picCls.png"];
-			Panel_DataSimulator.BackColor = Color.FromArgb(16, 255, 255, 255);
 
 			Button_SerialPortSetting.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 255, 255, 255);
 			Button_SerialPortSetting.FlatAppearance.MouseDownBackColor = Color.FromArgb(32, 0, 0, 0);
 			Button_DataSimulate.FlatAppearance.MouseOverBackColor = Color.FromArgb(32, 255, 255, 255);
 			Button_DataSimulate.FlatAppearance.MouseDownBackColor = Color.FromArgb(32, 0, 0, 0);
-			Button_OpenSimulator.BackColor = Color.FromArgb(216, 240, 255, 255);
-			Button_OpenSimulator.FlatAppearance.MouseOverBackColor = Color.FromArgb(216, 192, 255, 255);
-			Button_OpenSimulator.FlatAppearance.MouseDownBackColor = Color.FromArgb(96, 240, 255, 255);
 
 			serialPortConfig.BaudRate = 115200;
 			serialPortConfig.DataBits = 8;
@@ -119,6 +116,10 @@ namespace wuxian
 				else
 					Chart_Current.Series.Add(ChartSeries[i]);
 			}
+
+			dataSimulator.Panel_Main.Location = new Point(0, 460);
+			dataSimulator.Panel_Main.Visible = false;
+			Panel_Sidebar.Controls.Add(dataSimulator.Panel_Main);
 		}
 
 		private void Form_Main_Load(object sender, EventArgs e)
@@ -259,8 +260,9 @@ namespace wuxian
 
 		private void Button_DataSimulate_Click(object sender, EventArgs e)
 		{
-			Panel_DataSimulator.Visible = !Panel_DataSimulator.Visible;
-			Button_DataSimulate.ForeColor = Panel_DataSimulator.Visible ? Color.FromArgb(255, 255, 32) : Color.FromArgb(160, 255, 160);
+			bool PanelVisible = !dataSimulator.Panel_Main.Visible;
+			dataSimulator.Panel_Main.Visible = PanelVisible;
+			Button_DataSimulate.ForeColor = PanelVisible ? Color.FromArgb(255, 255, 32) : Color.FromArgb(160, 255, 160);
 		}
 
 		private void Button_ErrorData_Click(object sender, EventArgs e)

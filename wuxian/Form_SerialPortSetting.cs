@@ -139,6 +139,7 @@ namespace wuxian
 			catch (Exception exception)
 			{
 				MessageBox.Show(exception.ToString());
+				return;
 			}
 		}
 

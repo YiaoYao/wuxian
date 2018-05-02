@@ -51,6 +51,7 @@
     <Compile Include="control.designer.cs">
       <DependentUpon>control.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataSimulator.cs" />
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
     </Compile>
