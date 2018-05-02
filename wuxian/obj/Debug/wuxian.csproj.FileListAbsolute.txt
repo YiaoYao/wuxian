@@ -26,3 +26,4 @@ F:\GitHub\wuxian\wuxian\obj\Debug\wuxian.csproj.GenerateResource.cache
 F:\GitHub\wuxian\wuxian\obj\Debug\wuxian.csproj.CoreCompileInputs.cache
 F:\GitHub\wuxian\wuxian\obj\Debug\wuxian.exe
 F:\GitHub\wuxian\wuxian\obj\Debug\wuxian.pdb
+F:\GitHub\wuxian\wuxian\obj\Debug\wuxian.PortStateControl.resources

@@ -76,6 +76,12 @@
     <Compile Include="Form_SerialPortSetting.Designer.cs">
       <DependentUpon>Form_SerialPortSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="PortStateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PortStateControl.Designer.cs">
+      <DependentUpon>PortStateControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="control.resx">
@@ -92,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_SerialPortSetting.resx">
       <DependentUpon>Form_SerialPortSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PortStateControl.resx">
+      <DependentUpon>PortStateControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

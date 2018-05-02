@@ -37,7 +37,7 @@ namespace wuxian
 			destinationPort.Parity = Parity.None;
 
 			Panel_Main.Size = new Size(200, 69);
-			Panel_Main.BackColor = Color.FromArgb(16, 255, 255, 255);
+			Panel_Main.BackColor = Color.FromArgb(64, 0, 0, 0);
 
 			ComboBox_SerialPortList.DropDownStyle = ComboBoxStyle.DropDownList;
 			ComboBox_SerialPortList.Font = new Font("微软雅黑", 14.25f);

@@ -58,6 +58,7 @@ namespace wuxian
 		private Timer timerGetData = new Timer();
 		private Series[] ChartSeries = new Series[4];
 		private DataSimulator dataSimulator = new DataSimulator();
+		private PortStateControl StateControl = new PortStateControl();
 
 		public OleDbConnection c1 = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=shujuku.accdb");
 		public OleDbConnection c2 = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=guzhangku.accdb");
@@ -120,6 +121,11 @@ namespace wuxian
 			dataSimulator.Panel_Main.Location = new Point(0, 460);
 			dataSimulator.Panel_Main.Visible = false;
 			Panel_Sidebar.Controls.Add(dataSimulator.Panel_Main);
+
+			StateControl.Visible = false;
+			StateControl.Location = new Point(0, 460);
+			Panel_Sidebar.Controls.Add(StateControl);
+			StateControl.BringToFront();
 		}
 
 		private void Form_Main_Load(object sender, EventArgs e)
@@ -141,6 +147,8 @@ namespace wuxian
 			DateTime timeNow = DateTime.Now;
 			DataUnit NewData = new DataUnit(timeNow, data);
 			dataUnits.Add(NewData);
+			xqmove(NewData);
+			//chucun(NewData);
 		}
 
 		private void timerRefreshChart_Tick(object sender, EventArgs e)
@@ -251,16 +259,24 @@ namespace wuxian
 
 		private void Button_SerialPortSetting_Click(object sender, EventArgs e)
 		{
-			//Form_SerialPortSetting FormSetting = new Form_SerialPortSetting();
-			//FormSetting.ShowDialog();
-			button4.Text = selectedSerialPort.PortName;
-			Panel_SerialPortState.Visible = !Panel_SerialPortState.Visible;
-			Button_SerialPortSetting.ForeColor = Panel_SerialPortState.Visible ? Color.FromArgb(255, 255, 32) : Color.FromArgb(160, 255, 160);
+			bool StateControlVisable = !StateControl.Visible;
+			if (dataSimulator.Panel_Main.Visible == true)
+			{
+				dataSimulator.Panel_Main.Visible = false;
+				Button_DataSimulate.ForeColor = Color.FromArgb(160, 255, 160);
+			}
+			StateControl.Visible = StateControlVisable;
+			Button_SerialPortSetting.ForeColor = StateControlVisable ? Color.FromArgb(255, 255, 32) : Color.FromArgb(160, 255, 160);
 		}
 
 		private void Button_DataSimulate_Click(object sender, EventArgs e)
 		{
 			bool PanelVisible = !dataSimulator.Panel_Main.Visible;
+			if (StateControl.Visible == true)
+			{
+				StateControl.Visible = false;
+				Button_SerialPortSetting.ForeColor = Color.FromArgb(160, 255, 160);
+			}
 			dataSimulator.Panel_Main.Visible = PanelVisible;
 			Button_DataSimulate.ForeColor = PanelVisible ? Color.FromArgb(255, 255, 32) : Color.FromArgb(160, 255, 160);
 		}
@@ -355,5 +371,14 @@ namespace wuxian
 			oc1.Connection.Close();
 		}
 
+        private void xqmove(DataUnit d1)
+        {
+            s = (int)(d1.distance * 40 - 500);
+            h = (int)(d1.height * 40 - 500);
+            pictureBox2.Location = new Point(500-s,h);
+            pictureBox3.Location = new Point(450-s,25+h);
+            pictureBox3.Width  =  s;
+            pictureBox4.Height =  h;
+        }
 	}
 }
