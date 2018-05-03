@@ -18,14 +18,6 @@ namespace wuxian
 		private DataSimulator dataSimulator = new DataSimulator();
 		private PortStateControl StateControl = new PortStateControl();
 
-		public OleDbConnection c1 = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=shujuku.accdb");
-		public OleDbConnection c2 = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=guzhangku.accdb");
-		private float[] shangxian = { 100, 100, 100, 100 };
-		private float[] xiaxian = { 0, 0, 0, 0 };
-		private float[] bianhong = new float[4];
-		private int chart_x = 0;
-		public int s, h;
-
 		public Form_Main()
 		{
 			InitializeComponent();
@@ -217,77 +209,5 @@ namespace wuxian
 		{
 
 		}
-
-		private void chucun(DataUnit d1)
-		{
-			OleDbCommand oc = new OleDbCommand();
-			oc.CommandText = "insert into sjb(ybu,ybi,fbu,fbi,l,h,t) values (" + d1.ToString() + ",'" + d1.Time + "')";
-			oc.Connection = c1;
-			oc.Connection.Open();
-			oc.ExecuteNonQuery();
-			oc.Connection.Close();
-			for (int i = 0; i < 10; i++)
-			{
-				bianhong[i] = 0;
-			}
-			if (d1.PrimaryVoltage > shangxian[0])
-			{
-				bianhong[0] = 1;
-			}
-			else if (d1.PrimaryVoltage < xiaxian[0])
-			{ bianhong[0] = 2; }
-			if (d1.PrimaryCurrent > shangxian[1])
-			{
-				bianhong[1] = 1;
-			}
-			else if (d1.PrimaryCurrent < xiaxian[1])
-			{ bianhong[1] = 2; }
-			if (d1.SecondaryVoltage > shangxian[2])
-			{
-				bianhong[2] = 1;
-			}
-			else if (d1.SecondaryVoltage < xiaxian[2])
-			{ bianhong[2] = 2; }
-			if (d1.SecondaryCurrent > shangxian[3])
-			{
-				bianhong[3] = 1;
-			}
-			else if (d1.SecondaryCurrent < xiaxian[3])
-			{ bianhong[3] = 2; }
-			float p = 0;
-			for (int i = 0; i < 10; i++)
-			{
-				p = p + bianhong[i];
-			}
-			if (p > 0)
-				guzhang(d1, bianhong);
-		}
-
-		private void guzhang(DataUnit d1, float[] b1)
-		{
-			OleDbCommand oc1 = new OleDbCommand();
-			oc1.CommandText = "insert into gzb(ybu,ybi,fbu,fbi,l,h,ybuu,ybii,fbuu,fbii,t) values (" + d1.ToString() + ",";
-
-			for (int i = 0; i < 4; i++)
-			{
-				oc1.CommandText = oc1.CommandText + b1[i] + ",";
-			}
-			oc1.CommandText = oc1.CommandText + "'" + d1.Time.ToString() + "'";
-			oc1.CommandText = oc1.CommandText + ")";
-			oc1.Connection = c2;
-			oc1.Connection.Open();
-			oc1.ExecuteNonQuery();
-			oc1.Connection.Close();
-		}
-
-        private void xqmove(DataUnit d1)
-        {
-            s = (int)(d1.distance * 40 - 500);
-            h = (int)(d1.height * 40 - 500);
-            pictureBox2.Location = new Point(500-s,h);
-            pictureBox3.Location = new Point(450-s,25+h);
-            pictureBox3.Width  =  s;
-            pictureBox4.Height =  h;
-        }
 	}
 }
