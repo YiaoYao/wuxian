@@ -23,7 +23,6 @@ namespace wuxian
 		private float[] shangxian = { 100, 100, 100, 100 };
 		private float[] xiaxian = { 0, 0, 0, 0 };
 		private float[] bianhong = new float[4];
-		private int chart_x = 0;
 		public int s, h;
 
 		public Form_Main()
@@ -69,6 +68,8 @@ namespace wuxian
 			StateControl.Location = new Point(0, 460);
 			Panel_Sidebar.Controls.Add(StateControl);
 			StateControl.BringToFront();
+
+			StateControl.eventRun += new PortStateControl.delegateRun(cm);
 		}
 
 		private void Form_Main_Load(object sender, EventArgs e)
@@ -93,7 +94,7 @@ namespace wuxian
 			DateTime timeNow = DateTime.Now;
 			int startIndex = 240;
 			TimeSpan timeInterval = new TimeSpan(0, 0, 10);
-			for (int i = 0; i < 240; i++)
+			for (int i = 0; i < DataUnits.Length; i++)
 			{
 				if (timeNow - DataUnits[i].Time <= timeInterval)
 				{
@@ -218,15 +219,15 @@ namespace wuxian
 
 		}
 
-		private void chucun(DataUnit d1)
+		public void chucun(DataUnit d1)
 		{
 			OleDbCommand oc = new OleDbCommand();
-			oc.CommandText = "insert into sjb(ybu,ybi,fbu,fbi,l,h,t) values (" + d1.ToString() + ",'" + d1.Time + "')";
+			oc.CommandText = "insert into sjb(ybu,ybi,fbu,fbi,l,h,t,ms) values (" + d1.ToString() + ",'" + d1.Time.ToShortDateString() + "',"+d1.Time.TimeOfDay.TotalMilliseconds+")";
 			oc.Connection = c1;
 			oc.Connection.Open();
 			oc.ExecuteNonQuery();
 			oc.Connection.Close();
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < 4; i++)
 			{
 				bianhong[i] = 0;
 			}
@@ -255,7 +256,7 @@ namespace wuxian
 			else if (d1.SecondaryCurrent < xiaxian[3])
 			{ bianhong[3] = 2; }
 			float p = 0;
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < 4; i++)
 			{
 				p = p + bianhong[i];
 			}
@@ -263,16 +264,17 @@ namespace wuxian
 				guzhang(d1, bianhong);
 		}
 
-		private void guzhang(DataUnit d1, float[] b1)
+		public void guzhang(DataUnit d1, float[] b1)
 		{
 			OleDbCommand oc1 = new OleDbCommand();
-			oc1.CommandText = "insert into gzb(ybu,ybi,fbu,fbi,l,h,ybuu,ybii,fbuu,fbii,t) values (" + d1.ToString() + ",";
+			oc1.CommandText = "insert into gzb(ybu,ybi,fbu,fbi,l,h,ybuu,ybii,fbuu,fbii,t,ms) values (" + d1.ToString() + ",";
 
 			for (int i = 0; i < 4; i++)
 			{
 				oc1.CommandText = oc1.CommandText + b1[i] + ",";
 			}
-			oc1.CommandText = oc1.CommandText + "'" + d1.Time.ToString() + "'";
+			oc1.CommandText = oc1.CommandText + "'" + d1.Time.ToShortDateString() + "'";
+			oc1.CommandText = oc1.CommandText + (int)d1.Time.TimeOfDay.TotalMilliseconds;
 			oc1.CommandText = oc1.CommandText + ")";
 			oc1.Connection = c2;
 			oc1.Connection.Open();
@@ -280,14 +282,30 @@ namespace wuxian
 			oc1.Connection.Close();
 		}
 
-        private void xqmove(DataUnit d1)
-        {
-            s = (int)(d1.distance * 40 - 500);
-            h = (int)(d1.height * 40 - 500);
-            pictureBox2.Location = new Point(500-s,h);
-            pictureBox3.Location = new Point(450-s,25+h);
-            pictureBox3.Width  =  s;
-            pictureBox4.Height =  h;
-        }
+		private void Button_ManualControl_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		public void xqmove(DataUnit d1)
+		{
+			s = (int)(d1.distance * 7.5);
+			h = (int)(d1.height * 7.5);
+			pictureBox2.Location = new Point(500 - s, h);
+			pictureBox3.Location = new Point(550 - s, 25 + h);
+			pictureBox3.Width = s;
+			pictureBox4.Height = h;
+		}
+		public void cm()
+		{
+			chucun(StateControl.d1);
+			xqmove(StateControl.d1);
+			char[] c = StateControl.value.ToCharArray();
+			foreach (char i in c)
+			{
+				richTextBox1.Text += string.Format("0x{0:x} ", i);
+			}
+			richTextBox1.Text += Environment.NewLine;
+		}
 	}
 }

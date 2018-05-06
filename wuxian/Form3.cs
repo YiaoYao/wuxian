@@ -29,7 +29,10 @@ namespace wuxian
         {
             InitializeComponent();
         }
-        OleDbCommand os = new OleDbCommand();
+		public OleDbConnection c1 = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=shujuku.accdb");
+		public OleDbConnection c2 = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=guzhangku.accdb");
+
+		OleDbCommand os = new OleDbCommand();
         OleDbDataReader od;
         DataTable dt = new DataTable();
         int i = 0;
@@ -51,7 +54,7 @@ namespace wuxian
             dt.Columns.Add("s", typeof(bool));
             dt.Columns.Add("time", typeof(DateTime));
             dt.Clear();
-            os.Connection = oleDbConnection1;
+            os.Connection = c2;
             os.CommandText = "select * from gzb";
             xianshi();
         }
@@ -149,9 +152,9 @@ namespace wuxian
             DateTime d2 = new DateTime();
             d1 = dateTimePicker1.Value;
             d2 = dateTimePicker2.Value;
-            os.CommandText = "select * from gzb where t between #" + d1.ToString("yyyy/MM/dd hh:mm:ss") + "# and #" + d2.ToString("yyyy/MM/dd hh:mm:ss") + "#";
-            // os.CommandText = "select * from sjb where ybu between 1 and 10";
-            xianshi();
+			os.CommandText = "select * from gzb where (t between #" + d1.ToString("yyyy/MM/dd") + "# and #" + d2.ToString("yyyy/MM/dd") + "#) AND (ms between " + (int)d1.TimeOfDay.TotalMilliseconds + " and " + (int)d2.TimeOfDay.TotalMilliseconds + ")";
+			// os.CommandText = "select * from sjb where ybu between 1 and 10";
+			xianshi();
         }
     }
 }

@@ -57,6 +57,12 @@ namespace wuxian
 		private string[] SerialPortList = new string[0];
 		private Timer TimerGetData = new Timer();
 		public List<DataUnit> DataUnits = new List<DataUnit>(240);
+		public DataUnit d1 = new DataUnit();
+
+		public string value = "";
+
+		public delegate void delegateRun();
+		public event delegateRun eventRun;
 
 		public PortStateControl()
 		{
@@ -85,10 +91,11 @@ namespace wuxian
 		private void SelectedSerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
 		{
 			string source = SelectedSerialPort.ReadExisting();
+			value = source;
 			string[] strData = (source.TrimEnd()).Split(',');
 			if (strData.Length != 6) return;
 			float[] data = new float[6];
-			for (int i = 0; i < 6; i++)
+			for (int i = 0; i < strData.Length; i++)
 				if (!float.TryParse(strData[i], out data[i])) return;
 
 			if (DataUnits.Count >= 240)
@@ -96,6 +103,8 @@ namespace wuxian
 			DateTime timeNow = DateTime.Now;
 			DataUnit NewData = new DataUnit(timeNow, data);
 			DataUnits.Add(NewData);
+			d1 = NewData;
+			eventRun();
 		}
 
 		private void RefreshSerialPortList()
@@ -149,7 +158,7 @@ namespace wuxian
 
 		private void TimerGetData_Tick(object sender, EventArgs e)
 		{
-			SelectedSerialPort.Write("A");
+			SelectedSerialPort.Write("A" + Environment.NewLine);
 		}
 
 		private void Label_Open_MouseEnter(object sender, EventArgs e)

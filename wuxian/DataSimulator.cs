@@ -113,7 +113,7 @@ namespace wuxian
 		{
 			double[] data = new double[6];
 
-			if (((SerialPort)sender).ReadExisting() == "A")
+			if (((SerialPort)sender).ReadExisting() == "A" + Environment.NewLine)
 			{
 				for (int i = 0; i < 6; i++)
 				{

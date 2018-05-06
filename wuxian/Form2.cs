@@ -9,9 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Runtime.InteropServices;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace wuxian 
 {
+
+	
     public partial class Form2 : Form
     {
         [DllImport("user32.dll")]
@@ -24,11 +27,28 @@ namespace wuxian
         [DllImport("user32.dll")]
         private static extern int SendMessage(IntPtr hwnd, int wMsg, int wParam, IntPtr lParam);
         private const int WM_SETREDRAW = 0xB;
-        public Form2()
+
+		private Series[] charts = new Series[4];
+
+		
+		public Form2()
         {
             InitializeComponent();
-        }
-        OleDbCommand os = new OleDbCommand();
+			for (int i = 0; i < 4; i++)
+			{
+				charts[i] = new Series();
+				charts[i].ChartType = SeriesChartType.Spline;
+				charts[i].XValueType = ChartValueType.Time;
+			}
+			chart1.Series.Add(charts[0]);
+			chart2.Series.Add(charts[1]);
+			chart3.Series.Add(charts[2]);
+			chart4.Series.Add(charts[3]);
+		}
+		public OleDbConnection c1 = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=shujuku.accdb");
+		public OleDbConnection c2 = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=guzhangku.accdb");
+
+		OleDbCommand os = new OleDbCommand();
         OleDbDataReader od;
         DataTable dt = new DataTable();
         int i = 0;
@@ -50,17 +70,18 @@ namespace wuxian
             dt.Columns.Add("h", typeof(float));
             dt.Columns.Add("s", typeof(bool));
             dt.Columns.Add("time", typeof(DateTime));
-            dt.Clear();
-            chart1.Series["ybu"].Points.Clear();
-            chart2.Series["ybi"].Points.Clear();
-            chart3.Series["fbu"].Points.Clear();
-            chart4.Series["fbi"].Points.Clear();
-            xianshi();
+			dt.Columns.Add("ms", typeof(int));
+			dt.Clear();
+			for (int k = 0; k < 4; k++)
+			{
+				charts[k].Points.Clear();
+			}
+			xianshi();
             tubiao();
         }
         public void xianshi() {
             
-            os.Connection = oleDbConnection1;
+            os.Connection = c1;
             os.Connection.Open();
             od = os.ExecuteReader();
             while (od.Read()) {
@@ -78,8 +99,12 @@ namespace wuxian
                 dt.Rows[i]["l"] = od["l"];
                 dt.Rows[i]["h"] = od["h"];
                 dt.Rows[i]["s"] = od["s"];
-                dt.Rows[i]["time"] = od["t"];
-                i++;
+				DateTime t = ((DateTime)od["t"]);
+				//dt.Rows[i]["time"] =((DateTime)od["t"]).ToShortDateString() + " " + ((int)od["ms"] / 3600000).ToString() + ":" + (((int)od["ms"] % 3600000) / 60000).ToString() + ":" + ((((int)od["ms"] % 3600000) % 60000) / 1000).ToString() + ":" + ((((int)od["ms"] % 3600000) % 60000) % 1000).ToString();
+
+				t = t.AddMilliseconds(double.Parse(od["ms"].ToString()));
+				dt.Rows[i]["time"] = t ;
+				i++;
             }
             os.Connection.Close();
             dataGridView1.DataSource = dt;
@@ -88,12 +113,12 @@ namespace wuxian
         public void tubiao()
         {
             for (int k = 0; k < i; k++)
-            {
-                chart1.Series["ybu"].Points.AddXY(dt.Rows[k]["time"], dt.Rows[k]["ybu"]);
-                chart2.Series["ybi"].Points.AddXY(dt.Rows[k]["time"], dt.Rows[k]["ybi"]);
-                chart3.Series["fbu"].Points.AddXY(dt.Rows[k]["time"], dt.Rows[k]["fbu"]);
-                chart4.Series["fbi"].Points.AddXY(dt.Rows[k]["time"], dt.Rows[k]["fbi"]);
-            }
+			{
+				charts[0].Points.AddXY(dt.Rows[k]["time"], dt.Rows[k]["ybu"]);
+				charts[1].Points.AddXY(dt.Rows[k]["time"], dt.Rows[k]["ybi"]);
+				charts[2].Points.AddXY(dt.Rows[k]["time"], dt.Rows[k]["fbu"]);
+				charts[3].Points.AddXY(dt.Rows[k]["time"], dt.Rows[k]["fbi"]);
+			}
 
         }//图表显示
 
@@ -102,15 +127,15 @@ namespace wuxian
             od = null;
             dt.Clear();
             i = 0;
-            chart1.Series["ybu"].Points.Clear();
-            chart2.Series["ybi"].Points.Clear();
-            chart3.Series["fbu"].Points.Clear();
-            chart4.Series["fbi"].Points.Clear();
-            DateTime d1 = new DateTime();
+			charts[0].Points.Clear();
+			charts[1].Points.Clear();
+			charts[2].Points.Clear();
+			charts[3].Points.Clear();
+			DateTime d1 = new DateTime();
             DateTime d2 = new DateTime();
             d1 = dateTimePicker1.Value;
             d2 = dateTimePicker2.Value;
-            os.CommandText = "select * from sjb where t between #"+d1.ToString("yyyy/MM/dd hh:mm:ss")+"# and #"+ d2.ToString("yyyy/MM/dd hh:mm:ss")+"#";
+            os.CommandText = "select * from sjb where (t between #"+d1.ToString("yyyy/MM/dd")+"# and #"+ d2.ToString("yyyy/MM/dd")+"#) AND (ms between "+(int)d1.TimeOfDay.TotalMilliseconds +" and "+(int)d2.TimeOfDay.TotalMilliseconds+")";
            // os.CommandText = "select * from sjb where ybu between 1 and 10";
             xianshi();
             tubiao();
