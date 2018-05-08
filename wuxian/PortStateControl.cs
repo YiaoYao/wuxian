@@ -16,39 +16,36 @@ namespace wuxian
 		public struct DataUnit
 		{
 			public DateTime Time;
-			public float PrimaryVoltage;
-			public float PrimaryCurrent;
-			public float SecondaryVoltage;
-			public float SecondaryCurrent;
-			public float distance;
-			public float height;
+			public float Voltage;
+			public float Current;
+			public float Battery;
+			public float Distance;
+			public float Height;
 
 			public DataUnit(DateTime dt, float[] data)
 			{
 				Time = dt;
-				if (data.Length == 6)
+				if (data.Length == 5)
 				{
-					PrimaryVoltage = data[0];
-					PrimaryCurrent = data[1];
-					SecondaryVoltage = data[2];
-					SecondaryCurrent = data[3];
-					distance = data[4];
-					height = data[5];
+					Voltage = data[0];
+					Current = data[1];
+					Battery = data[2];
+					Distance = data[3];
+					Height = data[4];
 				}
 				else
 				{
-					PrimaryVoltage = 1.0f;
-					PrimaryCurrent = 1.0f;
-					SecondaryVoltage = 1.0f;
-					SecondaryCurrent = 1.0f;
-					distance = 1.0f;
-					height = 1.0f;
+					Voltage = 0.0f;
+					Current = 0.0f;
+					Battery = 0.0f;
+					Distance = 0.0f;
+					Height = 0.0f;
 				}
 			}
 
 			public override string ToString()
 			{
-				return string.Format("{0:N2}, {1:N2}, {2:N2}, {3:N2}, {4:N2}, {5:N2}", PrimaryVoltage, PrimaryCurrent, SecondaryVoltage, SecondaryCurrent, distance, height);
+				return string.Format("{0:N2}, {1:N2}, {2:N2}, {3:N2}, {4:N2}", Voltage, Current, Battery, Distance, Height);
 			}
 		}
 
@@ -93,9 +90,9 @@ namespace wuxian
 			string source = SelectedSerialPort.ReadExisting();
 			value = source;
 			string[] strData = (source.TrimEnd()).Split(',');
-			if (strData.Length != 6) return;
-			float[] data = new float[6];
-			for (int i = 0; i < strData.Length; i++)
+			if (strData.Length != 5) return;
+			float[] data = new float[5];
+			for (int i = 0; i < 5; i++)
 				if (!float.TryParse(strData[i], out data[i])) return;
 
 			if (DataUnits.Count >= 240)
@@ -158,7 +155,7 @@ namespace wuxian
 
 		private void TimerGetData_Tick(object sender, EventArgs e)
 		{
-			SelectedSerialPort.Write("A" + Environment.NewLine);
+			SelectedSerialPort.Write("s" + Environment.NewLine);
 		}
 
 		private void Label_Open_MouseEnter(object sender, EventArgs e)

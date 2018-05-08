@@ -38,12 +38,11 @@ namespace wuxian
 			{
 				charts[i] = new Series();
 				charts[i].ChartType = SeriesChartType.Spline;
-				charts[i].XValueType = ChartValueType.Time;
-			}
+				charts[i].XValueType = ChartValueType.DateTime;
+            }
 			chart1.Series.Add(charts[0]);
 			chart2.Series.Add(charts[1]);
 			chart3.Series.Add(charts[2]);
-			chart4.Series.Add(charts[3]);
 		}
 		public OleDbConnection c1 = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=shujuku.accdb");
 		public OleDbConnection c2 = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=guzhangku.accdb");
@@ -55,22 +54,22 @@ namespace wuxian
         private void Form2_Load(object sender, EventArgs e)
         {
             i = 0;
-            os.CommandText = "select * from sjb";
-            dt.Columns.Add("ybu", typeof(float));
-            dt.Columns.Add("ybi", typeof(float));
+            os.CommandText = "select * from sjb order by t";
+           // dt.Columns.Add("原边电压", typeof(float));
+            //dt.Columns.Add("原边电流", typeof(float));
             //dt.Columns.Add("ybt", typeof(float));
-            dt.Columns.Add("fbu", typeof(float));
-            dt.Columns.Add("fbi", typeof(float));
-           /* dt.Columns.Add("fbt", typeof(float));
-            dt.Columns.Add("dcu", typeof(float));
-            dt.Columns.Add("dci", typeof(float));
-            dt.Columns.Add("dcl", typeof(float));
-            dt.Columns.Add("dct", typeof(float));*/
-            dt.Columns.Add("l", typeof(float));
-            dt.Columns.Add("h", typeof(float));
-            dt.Columns.Add("s", typeof(bool));
-            dt.Columns.Add("time", typeof(DateTime));
-			dt.Columns.Add("ms", typeof(int));
+            dt.Columns.Add("副边电压", typeof(float));
+            dt.Columns.Add("副边电流", typeof(float));
+            dt.Columns.Add("电池电量", typeof(float));
+            /* dt.Columns.Add("fbt", typeof(float));
+             dt.Columns.Add("dcu", typeof(float));
+             dt.Columns.Add("dci", typeof(float));
+             dt.Columns.Add("dcl", typeof(float));
+             dt.Columns.Add("dct", typeof(float));*/
+            dt.Columns.Add("距离", typeof(float));
+            dt.Columns.Add("高度", typeof(float));
+            //dt.Columns.Add("s", typeof(bool));
+            dt.Columns.Add("时间", typeof(DateTime));
 			dt.Clear();
 			for (int k = 0; k < 4; k++)
 			{
@@ -86,39 +85,65 @@ namespace wuxian
             od = os.ExecuteReader();
             while (od.Read()) {
                 dt.Rows.Add(i);
-                dt.Rows[i]["ybu"] = od["ybu"];
-                dt.Rows[i]["ybi"] = od["ybi"];
+                //dt.Rows[i]["原边电压"] = od["ybu"];
+                //dt.Rows[i]["原边电流"] = od["ybi"];
                 //dt.Rows[i]["ybt"] = od["ybt"];
-                dt.Rows[i]["fbu"] = od["fbu"];
-                dt.Rows[i]["fbi"] = od["fbi"];
+                dt.Rows[i]["副边电压"] = od["fbu"];
+                dt.Rows[i]["副边电流"] = od["fbi"];
+                dt.Rows[i]["电池电量"] = od["dcl"];
                 /*dt.Rows[i]["fbt"] = od["fbt"];
                 dt.Rows[i]["dcu"] = od["dcu"];
                 dt.Rows[i]["dci"] = od["dci"];
                 dt.Rows[i]["dcl"] = od["dcl"];
                 dt.Rows[i]["dct"] = od["dct"];*/
-                dt.Rows[i]["l"] = od["l"];
-                dt.Rows[i]["h"] = od["h"];
-                dt.Rows[i]["s"] = od["s"];
+                dt.Rows[i]["距离"] = od["l"];
+                dt.Rows[i]["高度"] = od["h"];
+                //dt.Rows[i]["s"] = od["s"];
 				DateTime t = ((DateTime)od["t"]);
 				//dt.Rows[i]["time"] =((DateTime)od["t"]).ToShortDateString() + " " + ((int)od["ms"] / 3600000).ToString() + ":" + (((int)od["ms"] % 3600000) / 60000).ToString() + ":" + ((((int)od["ms"] % 3600000) % 60000) / 1000).ToString() + ":" + ((((int)od["ms"] % 3600000) % 60000) % 1000).ToString();
 
 				t = t.AddMilliseconds(double.Parse(od["ms"].ToString()));
-				dt.Rows[i]["time"] = t ;
+				dt.Rows[i]["时间"] = t ;
 				i++;
             }
             os.Connection.Close();
+            dt.DefaultView.Sort = "时间 DESC";
+            dt = dt.DefaultView.ToTable();
             dataGridView1.DataSource = dt;
+            dataGridView1.Columns["时间"].Width=170;
+            dataGridView1.Columns["副边电压"].Width = 150;
+            dataGridView1.Columns["副边电流"].Width = 150;
+            dataGridView1.Columns["电池电量"].Width = 150;
 
         }//表格显示
         public void tubiao()
         {
-            for (int k = 0; k < i; k++)
-			{
-				charts[0].Points.AddXY(dt.Rows[k]["time"], dt.Rows[k]["ybu"]);
-				charts[1].Points.AddXY(dt.Rows[k]["time"], dt.Rows[k]["ybi"]);
-				charts[2].Points.AddXY(dt.Rows[k]["time"], dt.Rows[k]["fbu"]);
-				charts[3].Points.AddXY(dt.Rows[k]["time"], dt.Rows[k]["fbi"]);
-			}
+            for (int k = 1; k < i-1; k++)
+			{			//charts[0].Points.AddXY(dt.Rows[k]["时间"], dt.Rows[k]["原边电压"]);
+				//charts[1].Points.AddXY(dt.Rows[k]["时间"], dt.Rows[k]["原边电流"]);
+				charts[0].Points.AddXY(dt.Rows[k]["时间"], dt.Rows[k]["副边电压"]);
+				charts[1].Points.AddXY(dt.Rows[k]["时间"], dt.Rows[k]["副边电流"]);
+                charts[2].Points.AddXY(dt.Rows[k]["时间"], dt.Rows[k]["电池电量"]);
+            }
+            chart1.ChartAreas[0].AxisY.Maximum = 15;
+            chart1.ChartAreas[0].AxisY.Minimum = 13;
+            chart2.ChartAreas[0].AxisY.Maximum = 16;
+            chart2.ChartAreas[0].AxisY.Minimum = 14;
+            chart3.ChartAreas[0].AxisY.Maximum = 15;
+            chart3.ChartAreas[0].AxisY.Minimum = 13;
+            //chart4.ChartAreas[0].AxisY.Maximum = 16;
+            //chart4.ChartAreas[0].AxisY.Minimum = 14;
+            if ((i - 1) >= 0)
+            {
+                chart1.ChartAreas[0].AxisX.Minimum = chart1.ChartAreas[0].AxisX.Minimum = ((DateTime)dt.Rows[i - 1]["时间"]).ToOADate();
+                chart1.ChartAreas[0].AxisX.Maximum = chart1.ChartAreas[0].AxisX.Maximum = ((DateTime)dt.Rows[0]["时间"]).ToOADate();
+                chart2.ChartAreas[0].AxisX.Minimum = chart1.ChartAreas[0].AxisX.Minimum = ((DateTime)dt.Rows[i - 1]["时间"]).ToOADate();
+                chart2.ChartAreas[0].AxisX.Maximum = chart1.ChartAreas[0].AxisX.Maximum = ((DateTime)dt.Rows[0]["时间"]).ToOADate();
+                chart3.ChartAreas[0].AxisX.Minimum = chart1.ChartAreas[0].AxisX.Minimum = ((DateTime)dt.Rows[i - 1]["时间"]).ToOADate();
+                chart3.ChartAreas[0].AxisX.Maximum = chart1.ChartAreas[0].AxisX.Maximum = ((DateTime)dt.Rows[0]["时间"]).ToOADate();
+            }
+            //chart4.ChartAreas[0].AxisX.Minimum = chart1.ChartAreas[0].AxisX.Minimum = ((DateTime)dt.Rows[i - 1]["时间"]).ToOADate();
+            //chart4.ChartAreas[0].AxisX.Maximum = chart1.ChartAreas[0].AxisX.Maximum = ((DateTime)dt.Rows[1]["时间"]).ToOADate();
 
         }//图表显示
 
@@ -130,7 +155,7 @@ namespace wuxian
 			charts[0].Points.Clear();
 			charts[1].Points.Clear();
 			charts[2].Points.Clear();
-			charts[3].Points.Clear();
+			//charts[3].Points.Clear();
 			DateTime d1 = new DateTime();
             DateTime d2 = new DateTime();
             d1 = dateTimePicker1.Value;

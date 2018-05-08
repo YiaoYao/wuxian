@@ -111,15 +111,15 @@ namespace wuxian
 
 		private void destinationPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
 		{
-			double[] data = new double[6];
+			double[] data = new double[5];
 
-			if (((SerialPort)sender).ReadExisting() == "A" + Environment.NewLine)
+			if (((SerialPort)sender).ReadExisting() == "s" + Environment.NewLine)
 			{
-				for (int i = 0; i < 6; i++)
+				for (int i = 0; i < 5; i++)
 				{
 					data[i] = GenerateGaussianNoise(12.0 + i, 0.1);
 				}
-				destinationPort.Write(String.Format("{0:N2},{1:N2},{2:N2},{3:N2},{4:N2},{5:N2}", data[0], data[1], data[2], data[3], data[4], data[5]) + Environment.NewLine);
+				destinationPort.Write(String.Format("{0:N2},{1:N2},{2:N2},{3:N2},{4:N2}", data[0], data[1], data[2], data[3], data[4]) + Environment.NewLine);
 			}
 		}
 

@@ -30,12 +30,12 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Main));
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-			System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-			System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+			System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+			System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			this.Panel_Title = new System.Windows.Forms.Panel();
 			this.Panel_Minimize = new System.Windows.Forms.Panel();
 			this.Panel_Close = new System.Windows.Forms.Panel();
@@ -47,11 +47,6 @@
 			this.Button_ManualControl = new System.Windows.Forms.Button();
 			this.Chart_Voltage = new System.Windows.Forms.DataVisualization.Charting.Chart();
 			this.ImageList_Main = new System.Windows.Forms.ImageList(this.components);
-			this.Panel_SerialPortState = new System.Windows.Forms.Panel();
-			this.button3 = new System.Windows.Forms.Button();
-			this.button4 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
-			this.button1 = new System.Windows.Forms.Button();
 			this.Chart_Current = new System.Windows.Forms.DataVisualization.Charting.Chart();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -62,7 +57,6 @@
 			this.Panel_Title.SuspendLayout();
 			this.Panel_Sidebar.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.Chart_Voltage)).BeginInit();
-			this.Panel_SerialPortState.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.Chart_Current)).BeginInit();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -197,40 +191,40 @@
 			// 
 			this.Chart_Voltage.BackColor = System.Drawing.Color.Transparent;
 			this.Chart_Voltage.BorderlineWidth = 0;
-			chartArea3.AxisX.Crossing = -1.7976931348623157E+308D;
-			chartArea3.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-			chartArea3.AxisX.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
-			chartArea3.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
-			chartArea3.AxisX.IsStartedFromZero = false;
-			chartArea3.AxisX.LabelStyle.Format = "hh:mm:ss";
-			chartArea3.AxisX.LabelStyle.IsEndLabelVisible = false;
-			chartArea3.AxisX.LabelStyle.TruncatedLabels = true;
-			chartArea3.AxisX.LineWidth = 2;
-			chartArea3.AxisX.MajorGrid.Enabled = false;
-			chartArea3.AxisX.MajorTickMark.Enabled = false;
-			chartArea3.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-			chartArea3.AxisY.LineWidth = 2;
-			chartArea3.AxisY.MajorGrid.Enabled = false;
-			chartArea3.AxisY.MajorTickMark.Enabled = false;
-			chartArea3.BackColor = System.Drawing.Color.Transparent;
-			chartArea3.BorderWidth = 0;
-			chartArea3.Name = "ChartArea1";
-			chartArea3.Position.Auto = false;
-			chartArea3.Position.Height = 100F;
-			chartArea3.Position.Width = 100F;
-			this.Chart_Voltage.ChartAreas.Add(chartArea3);
-			legend3.Enabled = false;
-			legend3.Name = "Legend1";
-			this.Chart_Voltage.Legends.Add(legend3);
+			chartArea1.AxisX.Crossing = -1.7976931348623157E+308D;
+			chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+			chartArea1.AxisX.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+			chartArea1.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+			chartArea1.AxisX.IsStartedFromZero = false;
+			chartArea1.AxisX.LabelStyle.Format = "hh:mm:ss";
+			chartArea1.AxisX.LabelStyle.IsEndLabelVisible = false;
+			chartArea1.AxisX.LabelStyle.TruncatedLabels = true;
+			chartArea1.AxisX.LineWidth = 2;
+			chartArea1.AxisX.MajorGrid.Enabled = false;
+			chartArea1.AxisX.MajorTickMark.Enabled = false;
+			chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+			chartArea1.AxisY.LineWidth = 2;
+			chartArea1.AxisY.MajorGrid.Enabled = false;
+			chartArea1.AxisY.MajorTickMark.Enabled = false;
+			chartArea1.BackColor = System.Drawing.Color.Transparent;
+			chartArea1.BorderWidth = 0;
+			chartArea1.Name = "ChartArea1";
+			chartArea1.Position.Auto = false;
+			chartArea1.Position.Height = 100F;
+			chartArea1.Position.Width = 100F;
+			this.Chart_Voltage.ChartAreas.Add(chartArea1);
+			legend1.Enabled = false;
+			legend1.Name = "Legend1";
+			this.Chart_Voltage.Legends.Add(legend1);
 			this.Chart_Voltage.Location = new System.Drawing.Point(206, 86);
 			this.Chart_Voltage.Name = "Chart_Voltage";
-			series3.BorderWidth = 2;
-			series3.ChartArea = "ChartArea1";
-			series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-			series3.Legend = "Legend1";
-			series3.Name = "Series1";
-			series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
-			this.Chart_Voltage.Series.Add(series3);
+			series1.BorderWidth = 2;
+			series1.ChartArea = "ChartArea1";
+			series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+			series1.Legend = "Legend1";
+			series1.Name = "Series1";
+			series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
+			this.Chart_Voltage.Series.Add(series1);
 			this.Chart_Voltage.Size = new System.Drawing.Size(520, 320);
 			this.Chart_Voltage.TabIndex = 0;
 			this.Chart_Voltage.Text = "Voltage";
@@ -242,97 +236,44 @@
 			this.ImageList_Main.Images.SetKeyName(0, "picCls.png");
 			this.ImageList_Main.Images.SetKeyName(1, "picMin.png");
 			// 
-			// Panel_SerialPortState
-			// 
-			this.Panel_SerialPortState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-			this.Panel_SerialPortState.Controls.Add(this.button3);
-			this.Panel_SerialPortState.Controls.Add(this.button4);
-			this.Panel_SerialPortState.Controls.Add(this.button2);
-			this.Panel_SerialPortState.Controls.Add(this.button1);
-			this.Panel_SerialPortState.Location = new System.Drawing.Point(200, 372);
-			this.Panel_SerialPortState.Name = "Panel_SerialPortState";
-			this.Panel_SerialPortState.Size = new System.Drawing.Size(200, 275);
-			this.Panel_SerialPortState.TabIndex = 3;
-			this.Panel_SerialPortState.Visible = false;
-			// 
-			// button3
-			// 
-			this.button3.Location = new System.Drawing.Point(47, 167);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(110, 69);
-			this.button3.TabIndex = 1;
-			this.button3.Text = "More";
-			this.button3.UseVisualStyleBackColor = true;
-			// 
-			// button4
-			// 
-			this.button4.Enabled = false;
-			this.button4.Location = new System.Drawing.Point(47, 17);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(110, 69);
-			this.button4.TabIndex = 1;
-			this.button4.Text = "COM?";
-			this.button4.UseVisualStyleBackColor = true;
-			// 
-			// button2
-			// 
-			this.button2.Location = new System.Drawing.Point(47, 92);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(110, 69);
-			this.button2.TabIndex = 1;
-			this.button2.Text = "打开";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.button2_Click);
-			// 
-			// button1
-			// 
-			this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-			this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button1.Location = new System.Drawing.Point(0, 0);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(40, 40);
-			this.button1.TabIndex = 0;
-			this.button1.UseVisualStyleBackColor = true;
-			// 
 			// Chart_Current
 			// 
 			this.Chart_Current.BackColor = System.Drawing.Color.Transparent;
 			this.Chart_Current.BorderlineWidth = 0;
-			chartArea4.AxisX.Crossing = -1.7976931348623157E+308D;
-			chartArea4.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-			chartArea4.AxisX.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
-			chartArea4.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
-			chartArea4.AxisX.IsStartedFromZero = false;
-			chartArea4.AxisX.LabelStyle.Format = "hh:mm:ss";
-			chartArea4.AxisX.LabelStyle.IsEndLabelVisible = false;
-			chartArea4.AxisX.LabelStyle.TruncatedLabels = true;
-			chartArea4.AxisX.LineWidth = 2;
-			chartArea4.AxisX.MajorGrid.Enabled = false;
-			chartArea4.AxisX.MajorTickMark.Enabled = false;
-			chartArea4.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-			chartArea4.AxisY.LineWidth = 2;
-			chartArea4.AxisY.MajorGrid.Enabled = false;
-			chartArea4.AxisY.MajorTickMark.Enabled = false;
-			chartArea4.BackColor = System.Drawing.Color.Transparent;
-			chartArea4.BorderWidth = 0;
-			chartArea4.Name = "ChartArea1";
-			chartArea4.Position.Auto = false;
-			chartArea4.Position.Height = 100F;
-			chartArea4.Position.Width = 100F;
-			this.Chart_Current.ChartAreas.Add(chartArea4);
-			legend4.Enabled = false;
-			legend4.Name = "Legend1";
-			this.Chart_Current.Legends.Add(legend4);
+			chartArea2.AxisX.Crossing = -1.7976931348623157E+308D;
+			chartArea2.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+			chartArea2.AxisX.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+			chartArea2.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+			chartArea2.AxisX.IsStartedFromZero = false;
+			chartArea2.AxisX.LabelStyle.Format = "hh:mm:ss";
+			chartArea2.AxisX.LabelStyle.IsEndLabelVisible = false;
+			chartArea2.AxisX.LabelStyle.TruncatedLabels = true;
+			chartArea2.AxisX.LineWidth = 2;
+			chartArea2.AxisX.MajorGrid.Enabled = false;
+			chartArea2.AxisX.MajorTickMark.Enabled = false;
+			chartArea2.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+			chartArea2.AxisY.LineWidth = 2;
+			chartArea2.AxisY.MajorGrid.Enabled = false;
+			chartArea2.AxisY.MajorTickMark.Enabled = false;
+			chartArea2.BackColor = System.Drawing.Color.Transparent;
+			chartArea2.BorderWidth = 0;
+			chartArea2.Name = "ChartArea1";
+			chartArea2.Position.Auto = false;
+			chartArea2.Position.Height = 100F;
+			chartArea2.Position.Width = 100F;
+			this.Chart_Current.ChartAreas.Add(chartArea2);
+			legend2.Enabled = false;
+			legend2.Name = "Legend1";
+			this.Chart_Current.Legends.Add(legend2);
 			this.Chart_Current.Location = new System.Drawing.Point(732, 86);
 			this.Chart_Current.Name = "Chart_Current";
-			series4.BorderWidth = 2;
-			series4.ChartArea = "ChartArea1";
-			series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-			series4.Legend = "Legend1";
-			series4.Name = "Series1";
-			series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
-			this.Chart_Current.Series.Add(series4);
+			series2.BorderWidth = 2;
+			series2.ChartArea = "ChartArea1";
+			series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+			series2.Legend = "Legend1";
+			series2.Name = "Series1";
+			series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
+			this.Chart_Current.Series.Add(series2);
 			this.Chart_Current.Size = new System.Drawing.Size(520, 320);
 			this.Chart_Current.TabIndex = 0;
 			this.Chart_Current.Text = "Current";
@@ -401,7 +342,6 @@
 			this.ClientSize = new System.Drawing.Size(1280, 800);
 			this.Controls.Add(this.richTextBox1);
 			this.Controls.Add(this.panel1);
-			this.Controls.Add(this.Panel_SerialPortState);
 			this.Controls.Add(this.Chart_Current);
 			this.Controls.Add(this.Panel_Sidebar);
 			this.Controls.Add(this.Panel_Title);
@@ -418,7 +358,6 @@
 			this.Panel_Title.ResumeLayout(false);
 			this.Panel_Sidebar.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.Chart_Voltage)).EndInit();
-			this.Panel_SerialPortState.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.Chart_Current)).EndInit();
 			this.panel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -441,11 +380,6 @@
 		private System.Windows.Forms.Button Button_HistoryData;
 		private System.Windows.Forms.Button Button_ManualControl;
 		private System.Windows.Forms.DataVisualization.Charting.Chart Chart_Voltage;
-		private System.Windows.Forms.Panel Panel_SerialPortState;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Button button3;
-		private System.Windows.Forms.Button button4;
-		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.DataVisualization.Charting.Chart Chart_Current;
 		private System.Windows.Forms.Button Button_ErrorData;
 		private System.Windows.Forms.Panel panel1;

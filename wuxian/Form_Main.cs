@@ -14,7 +14,8 @@ namespace wuxian
 		private bool isTitleMouseDown = false;
 		private Point lastMousePosition = new Point(0, 0);
 		private Timer timerRefreshChart = new Timer();
-		private Series[] ChartSeries = new Series[4];
+		private Series VoltageSeries = new Series();
+		private Series CurrentSeries = new Series();
 		private DataSimulator dataSimulator = new DataSimulator();
 		private PortStateControl StateControl = new PortStateControl();
 
@@ -47,18 +48,8 @@ namespace wuxian
 
 			Chart_Voltage.Series.Clear();
 			Chart_Current.Series.Clear();
-			for (int i = 0; i < 4; i++)
-			{
-				ChartSeries[i] = new Series();
-				ChartSeries[i].ChartType = SeriesChartType.Spline;
-				ChartSeries[i].XValueType = ChartValueType.Time;
-				ChartSeries[i].BorderWidth = 2;
-				ChartSeries[i].Color = (i < 2) ? Color.FromArgb(255, 0, 0) : Color.FromArgb(0, 0, 255);
-				if (i % 2 == 0)
-					Chart_Voltage.Series.Add(ChartSeries[i]);
-				else
-					Chart_Current.Series.Add(ChartSeries[i]);
-			}
+			Chart_Voltage.Series.Add(VoltageSeries);
+			Chart_Current.Series.Add(CurrentSeries);
 
 			dataSimulator.Panel_Main.Location = new Point(0, 460);
 			dataSimulator.Panel_Main.Visible = false;
@@ -104,16 +95,14 @@ namespace wuxian
 			}
 
 			Chart_Voltage.ChartAreas[0].AxisX.Minimum = Chart_Current.ChartAreas[0].AxisX.Minimum = timeNow.Subtract(timeInterval).ToOADate();
-			Chart_Voltage.ChartAreas[0].AxisX.Maximum = Chart_Current.ChartAreas[0].AxisX.Maximum = timeNow.ToOADate();
-			foreach (Series s in ChartSeries)
-				s.Points.Clear();
+			Chart_Current.ChartAreas[0].AxisX.Maximum = Chart_Current.ChartAreas[0].AxisX.Maximum = timeNow.ToOADate();
+			VoltageSeries.Points.Clear();
+			CurrentSeries.Points.Clear();
 			for (int i = startIndex; i < DataUnits.Length; i++)
 			{
 				double time = DataUnits[i].Time.ToOADate();
-				ChartSeries[0].Points.AddXY(time, DataUnits[i].PrimaryVoltage);
-				ChartSeries[1].Points.AddXY(time, DataUnits[i].PrimaryCurrent);
-				ChartSeries[2].Points.AddXY(time, DataUnits[i].SecondaryVoltage);
-				ChartSeries[3].Points.AddXY(time, DataUnits[i].SecondaryCurrent);
+				VoltageSeries.Points.AddXY(time, DataUnits[i].Voltage);
+				CurrentSeries.Points.AddXY(time, DataUnits[i].Current);
 			}
 		}
 
@@ -214,11 +203,6 @@ namespace wuxian
             f2.ShowDialog();
 		}
 
-		private void button2_Click(object sender, EventArgs e)
-		{
-
-		}
-
 		public void chucun(DataUnit d1)
 		{
 			OleDbCommand oc = new OleDbCommand();
@@ -280,11 +264,6 @@ namespace wuxian
 			oc1.Connection.Open();
 			oc1.ExecuteNonQuery();
 			oc1.Connection.Close();
-		}
-
-		private void Button_ManualControl_Click(object sender, EventArgs e)
-		{
-
 		}
 
 		public void xqmove(DataUnit d1)

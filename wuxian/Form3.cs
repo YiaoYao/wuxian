@@ -38,21 +38,22 @@ namespace wuxian
         int i = 0;
         private void Form3_Load(object sender, EventArgs e)
         {
-            dt.Columns.Add("ybu", typeof(float));
-            dt.Columns.Add("ybi", typeof(float));
+           // dt.Columns.Add("原边电压", typeof(float));
+            //dt.Columns.Add("原边电流", typeof(float));
             // dt.Columns.Add("ybt", typeof(float));
-            dt.Columns.Add("fbu", typeof(float));
-            dt.Columns.Add("fbi", typeof(float));
+            dt.Columns.Add("副边电压", typeof(float));
+            dt.Columns.Add("副边电流", typeof(float));
+            dt.Columns.Add("电池电量", typeof(float));
             /* dt.Columns.Add("fbt", typeof(float));
              dt.Columns.Add("dcu", typeof(float));
              dt.Columns.Add("dci", typeof(float));
              dt.Columns.Add("dcl", typeof(float));
              dt.Columns.Add("dct", typeof(float));*/
-            dt.Columns.Add("l", typeof(float));
-            dt.Columns.Add("h", typeof(float));
-            dt.Columns.Add("leixing", typeof(string));
-            dt.Columns.Add("s", typeof(bool));
-            dt.Columns.Add("time", typeof(DateTime));
+            dt.Columns.Add("距离", typeof(float));
+            dt.Columns.Add("高度", typeof(float));
+            dt.Columns.Add("故障类型", typeof(string));
+           // dt.Columns.Add("s", typeof(bool));
+            dt.Columns.Add("时间", typeof(DateTime));
             dt.Clear();
             os.Connection = c2;
             os.CommandText = "select * from gzb";
@@ -68,24 +69,25 @@ namespace wuxian
             {
                 string[] leixing = new string[4];
                 dt.Rows.Add(i);
-                dt.Rows[i]["ybu"] = od["ybu"];
-                dt.Rows[i]["ybi"] = od["ybi"];
+                //dt.Rows[i]["原边电压"] = od["ybu"];
+                //dt.Rows[i]["原边电流"] = od["ybi"];
                 //dt.Rows[i]["ybt"] = od["ybt"];
-                dt.Rows[i]["fbu"] = od["fbu"];
-                dt.Rows[i]["fbi"] = od["fbi"];
-               /* dt.Rows[i]["fbt"] = od["fbt"];
-                dt.Rows[i]["dcu"] = od["dcu"];
-                dt.Rows[i]["dci"] = od["dci"];
-                dt.Rows[i]["dcl"] = od["dcl"];
-                dt.Rows[i]["dct"] = od["dct"];*/
-                dt.Rows[i]["l"] = od["l"];
-                dt.Rows[i]["h"] = od["h"];
-                if ((int)od["ybuu"] == 1) leixing[0] = "原边电压过高-";
-                else if ((int)od["ybuu"] == 2) leixing[0] = "原边电压过低-";
-                else leixing[0] = null ;
-                if ((int)od["ybii"] == 1) leixing[1] = "原边电流过高-";
-                else if ((int)od["ybii"] == 2) leixing[1] = "原边电流过低-";
-                else leixing[1] = null ;
+                dt.Rows[i]["副边电压"] = od["fbu"];
+                dt.Rows[i]["副边电流"] = od["fbi"];
+                dt.Rows[i]["电池电量"] = od["dcl"];
+                /* dt.Rows[i]["fbt"] = od["fbt"];
+                 dt.Rows[i]["dcu"] = od["dcu"];
+                 dt.Rows[i]["dci"] = od["dci"];
+                 dt.Rows[i]["dcl"] = od["dcl"];
+                 dt.Rows[i]["dct"] = od["dct"];*/
+                dt.Rows[i]["距离"] = od["l"];
+                dt.Rows[i]["高度"] = od["h"];
+                //if ((int)od["ybuu"] == 1) leixing[0] = "原边电压过高-";
+                //else if ((int)od["ybuu"] == 2) leixing[0] = "原边电压过低-";
+                //else leixing[0] = null ;
+                //if ((int)od["ybii"] == 1) leixing[1] = "原边电流过高-";
+                //else if ((int)od["ybii"] == 2) leixing[1] = "原边电流过低-";
+               // else leixing[1] = null ;
                /*if ((int)od["ybtt"] == 1) leixing[2] = "原边温度过高-";
                 else if ((int)od["ybtt"] == 1) leixing[2] = "原边温度过低-";
                 else leixing[2] = null ;*/
@@ -110,18 +112,21 @@ namespace wuxian
                 if ((int)od["dctt"] == 1) leixing[9] = "电池温度过高-";
                 else if ((int)od["dctt"] == 2) leixing[9] = "电池温度过低-";
                 else leixing[9] = null;*/
-                for (int k = 0; k < 4; k++)
+                for (int k = 2; k < 4; k++)
                 {
-                    dt.Rows[i]["leixing"] = dt.Rows[i]["leixing"] + leixing[k];
+                    dt.Rows[i]["故障类型"] = dt.Rows[i]["leixing"] + leixing[k];
                 }
-                dt.Rows[i]["s"] = od["s"];
-                dt.Rows[i]["time"] = od["t"];
+                // dt.Rows[i]["s"] = od["s"];
+                DateTime t = ((DateTime)od["t"]);
+                t = t.AddMilliseconds(double.Parse(od["ms"].ToString()));
+                dt.Rows[i]["时间"] = t;
                 i++;
 
             }
             os.Connection.Close();
             dataGridView1.DataSource = dt;
-
+            dataGridView1.Columns["故障类型"].Width = 250;
+            dataGridView1.Columns["时间"].Width = 170;
         }
 
         private void md(object sender, MouseEventArgs e)
