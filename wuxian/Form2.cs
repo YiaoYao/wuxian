@@ -111,9 +111,11 @@ namespace wuxian
             dt = dt.DefaultView.ToTable();
             dataGridView1.DataSource = dt;
             dataGridView1.Columns["时间"].Width=170;
-            dataGridView1.Columns["副边电压"].Width = 150;
-            dataGridView1.Columns["副边电流"].Width = 150;
-            dataGridView1.Columns["电池电量"].Width = 150;
+            dataGridView1.Columns["副边电压"].Width = 130;
+            dataGridView1.Columns["副边电流"].Width = 130;
+            dataGridView1.Columns["电池电量"].Width = 130;
+            dataGridView1.Columns["距离"].Width = 130;
+            dataGridView1.Columns["高度"].Width = 130;
 
         }//表格显示
         public void tubiao()
@@ -125,12 +127,16 @@ namespace wuxian
 				charts[1].Points.AddXY(dt.Rows[k]["时间"], dt.Rows[k]["副边电流"]);
                 charts[2].Points.AddXY(dt.Rows[k]["时间"], dt.Rows[k]["电池电量"]);
             }
-            chart1.ChartAreas[0].AxisY.Maximum = 15;
-            chart1.ChartAreas[0].AxisY.Minimum = 13;
-            chart2.ChartAreas[0].AxisY.Maximum = 16;
-            chart2.ChartAreas[0].AxisY.Minimum = 14;
-            chart3.ChartAreas[0].AxisY.Maximum = 15;
-            chart3.ChartAreas[0].AxisY.Minimum = 13;
+            //double aa = double.Parse(dt.Compute("Max(副边电流)", "true").ToString());
+
+           // aa = aa + 1; ;
+            chart1.ChartAreas[0].AxisY.Maximum = double.Parse(dt.Compute("Max(副边电压)", "true").ToString()) + 1;
+            chart1.ChartAreas[0].AxisY.Minimum = double.Parse(dt.Compute("Min(副边电压)", "true").ToString()) - 1;
+            chart2.ChartAreas[0].AxisY.Maximum = double.Parse(dt.Compute("Max(副边电流)", "true").ToString()) + 1;
+            chart2.ChartAreas[0].AxisY.Minimum = double.Parse(dt.Compute("Min(副边电流)", "true").ToString()) - 1;
+            chart3.ChartAreas[0].AxisY.Maximum = double.Parse(dt.Compute("Max(电池电量)", "true").ToString()) + 1;
+            chart3.ChartAreas[0].AxisY.Minimum = double.Parse(dt.Compute("Min(电池电量)", "true").ToString()) - 1;
+            
             //chart4.ChartAreas[0].AxisY.Maximum = 16;
             //chart4.ChartAreas[0].AxisY.Minimum = 14;
             if ((i - 1) >= 0)

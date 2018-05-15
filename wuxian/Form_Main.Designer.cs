@@ -30,12 +30,12 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Main));
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-			System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-			System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+			System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+			System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			this.Panel_Title = new System.Windows.Forms.Panel();
 			this.Panel_Minimize = new System.Windows.Forms.Panel();
 			this.Panel_Close = new System.Windows.Forms.Panel();
@@ -53,7 +53,12 @@
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.pictureBox4 = new System.Windows.Forms.PictureBox();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
-			this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.Label_Voltage = new System.Windows.Forms.Label();
+			this.Label_Current = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
 			this.Panel_Title.SuspendLayout();
 			this.Panel_Sidebar.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.Chart_Voltage)).BeginInit();
@@ -191,40 +196,64 @@
 			// 
 			this.Chart_Voltage.BackColor = System.Drawing.Color.Transparent;
 			this.Chart_Voltage.BorderlineWidth = 0;
-			chartArea1.AxisX.Crossing = -1.7976931348623157E+308D;
-			chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-			chartArea1.AxisX.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
-			chartArea1.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
-			chartArea1.AxisX.IsStartedFromZero = false;
-			chartArea1.AxisX.LabelStyle.Format = "hh:mm:ss";
-			chartArea1.AxisX.LabelStyle.IsEndLabelVisible = false;
-			chartArea1.AxisX.LabelStyle.TruncatedLabels = true;
-			chartArea1.AxisX.LineWidth = 2;
-			chartArea1.AxisX.MajorGrid.Enabled = false;
-			chartArea1.AxisX.MajorTickMark.Enabled = false;
-			chartArea1.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-			chartArea1.AxisY.LineWidth = 2;
-			chartArea1.AxisY.MajorGrid.Enabled = false;
-			chartArea1.AxisY.MajorTickMark.Enabled = false;
-			chartArea1.BackColor = System.Drawing.Color.Transparent;
-			chartArea1.BorderWidth = 0;
-			chartArea1.Name = "ChartArea1";
-			chartArea1.Position.Auto = false;
-			chartArea1.Position.Height = 100F;
-			chartArea1.Position.Width = 100F;
-			this.Chart_Voltage.ChartAreas.Add(chartArea1);
-			legend1.Enabled = false;
-			legend1.Name = "Legend1";
-			this.Chart_Voltage.Legends.Add(legend1);
+			chartArea3.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
+			chartArea3.AxisX.Crossing = -1.7976931348623157E+308D;
+			chartArea3.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+			chartArea3.AxisX.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+			chartArea3.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+			chartArea3.AxisX.IsLabelAutoFit = false;
+			chartArea3.AxisX.IsStartedFromZero = false;
+			chartArea3.AxisX.LabelAutoFitMaxFontSize = 12;
+			chartArea3.AxisX.LabelAutoFitMinFontSize = 10;
+			chartArea3.AxisX.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
+			chartArea3.AxisX.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(32)))), ((int)(((byte)(128)))));
+			chartArea3.AxisX.LabelStyle.Format = "hh:mm:ss";
+			chartArea3.AxisX.LabelStyle.IsEndLabelVisible = false;
+			chartArea3.AxisX.LabelStyle.TruncatedLabels = true;
+			chartArea3.AxisX.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(96)))), ((int)(((byte)(192)))));
+			chartArea3.AxisX.LineWidth = 2;
+			chartArea3.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(216)))), ((int)(((byte)(255)))));
+			chartArea3.AxisX.MajorGrid.LineWidth = 2;
+			chartArea3.AxisX.MajorTickMark.Enabled = false;
+			chartArea3.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+			chartArea3.AxisY.IsLabelAutoFit = false;
+			chartArea3.AxisY.LabelAutoFitMaxFontSize = 12;
+			chartArea3.AxisY.LabelAutoFitMinFontSize = 10;
+			chartArea3.AxisY.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
+			chartArea3.AxisY.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(32)))), ((int)(((byte)(128)))));
+			chartArea3.AxisY.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(96)))), ((int)(((byte)(192)))));
+			chartArea3.AxisY.LineWidth = 2;
+			chartArea3.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(216)))), ((int)(((byte)(255)))));
+			chartArea3.AxisY.MajorGrid.LineWidth = 2;
+			chartArea3.AxisY.MajorTickMark.Enabled = false;
+			chartArea3.BackColor = System.Drawing.Color.Transparent;
+			chartArea3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(96)))), ((int)(((byte)(192)))));
+			chartArea3.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+			chartArea3.BorderWidth = 3;
+			chartArea3.Name = "ChartArea1";
+			chartArea3.Position.Auto = false;
+			chartArea3.Position.Height = 100F;
+			chartArea3.Position.Width = 100F;
+			this.Chart_Voltage.ChartAreas.Add(chartArea3);
+			legend3.Enabled = false;
+			legend3.Name = "Legend1";
+			legend3.Title = "电压";
+			this.Chart_Voltage.Legends.Add(legend3);
 			this.Chart_Voltage.Location = new System.Drawing.Point(206, 86);
 			this.Chart_Voltage.Name = "Chart_Voltage";
-			series1.BorderWidth = 2;
-			series1.ChartArea = "ChartArea1";
-			series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-			series1.Legend = "Legend1";
-			series1.Name = "Series1";
-			series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
-			this.Chart_Voltage.Series.Add(series1);
+			series3.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
+			series3.BackSecondaryColor = System.Drawing.Color.Gray;
+			series3.BorderColor = System.Drawing.Color.Transparent;
+			series3.BorderWidth = 3;
+			series3.ChartArea = "ChartArea1";
+			series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
+			series3.Color = System.Drawing.Color.Black;
+			series3.Legend = "Legend1";
+			series3.LegendText = "电压";
+			series3.MarkerBorderColor = System.Drawing.Color.Black;
+			series3.Name = "Series1";
+			series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
+			this.Chart_Voltage.Series.Add(series3);
 			this.Chart_Voltage.Size = new System.Drawing.Size(520, 320);
 			this.Chart_Voltage.TabIndex = 0;
 			this.Chart_Voltage.Text = "Voltage";
@@ -240,40 +269,57 @@
 			// 
 			this.Chart_Current.BackColor = System.Drawing.Color.Transparent;
 			this.Chart_Current.BorderlineWidth = 0;
-			chartArea2.AxisX.Crossing = -1.7976931348623157E+308D;
-			chartArea2.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-			chartArea2.AxisX.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
-			chartArea2.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
-			chartArea2.AxisX.IsStartedFromZero = false;
-			chartArea2.AxisX.LabelStyle.Format = "hh:mm:ss";
-			chartArea2.AxisX.LabelStyle.IsEndLabelVisible = false;
-			chartArea2.AxisX.LabelStyle.TruncatedLabels = true;
-			chartArea2.AxisX.LineWidth = 2;
-			chartArea2.AxisX.MajorGrid.Enabled = false;
-			chartArea2.AxisX.MajorTickMark.Enabled = false;
-			chartArea2.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-			chartArea2.AxisY.LineWidth = 2;
-			chartArea2.AxisY.MajorGrid.Enabled = false;
-			chartArea2.AxisY.MajorTickMark.Enabled = false;
-			chartArea2.BackColor = System.Drawing.Color.Transparent;
-			chartArea2.BorderWidth = 0;
-			chartArea2.Name = "ChartArea1";
-			chartArea2.Position.Auto = false;
-			chartArea2.Position.Height = 100F;
-			chartArea2.Position.Width = 100F;
-			this.Chart_Current.ChartAreas.Add(chartArea2);
-			legend2.Enabled = false;
-			legend2.Name = "Legend1";
-			this.Chart_Current.Legends.Add(legend2);
+			chartArea4.AxisX.Crossing = -1.7976931348623157E+308D;
+			chartArea4.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+			chartArea4.AxisX.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+			chartArea4.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Seconds;
+			chartArea4.AxisX.IsLabelAutoFit = false;
+			chartArea4.AxisX.IsStartedFromZero = false;
+			chartArea4.AxisX.LabelAutoFitMaxFontSize = 14;
+			chartArea4.AxisX.LabelAutoFitMinFontSize = 12;
+			chartArea4.AxisX.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
+			chartArea4.AxisX.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(32)))), ((int)(((byte)(128)))));
+			chartArea4.AxisX.LabelStyle.Format = "hh:mm:ss";
+			chartArea4.AxisX.LabelStyle.IsEndLabelVisible = false;
+			chartArea4.AxisX.LabelStyle.TruncatedLabels = true;
+			chartArea4.AxisX.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(96)))), ((int)(((byte)(192)))));
+			chartArea4.AxisX.LineWidth = 2;
+			chartArea4.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(216)))), ((int)(((byte)(255)))));
+			chartArea4.AxisX.MajorGrid.LineWidth = 2;
+			chartArea4.AxisX.MajorTickMark.Enabled = false;
+			chartArea4.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+			chartArea4.AxisY.IsLabelAutoFit = false;
+			chartArea4.AxisY.LabelAutoFitMaxFontSize = 16;
+			chartArea4.AxisY.LabelAutoFitMinFontSize = 14;
+			chartArea4.AxisY.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
+			chartArea4.AxisY.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(32)))), ((int)(((byte)(128)))));
+			chartArea4.AxisY.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(96)))), ((int)(((byte)(192)))));
+			chartArea4.AxisY.LineWidth = 2;
+			chartArea4.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(216)))), ((int)(((byte)(255)))));
+			chartArea4.AxisY.MajorGrid.LineWidth = 2;
+			chartArea4.AxisY.MajorTickMark.Enabled = false;
+			chartArea4.BackColor = System.Drawing.Color.Transparent;
+			chartArea4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(96)))), ((int)(((byte)(192)))));
+			chartArea4.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+			chartArea4.BorderWidth = 3;
+			chartArea4.Name = "ChartArea1";
+			chartArea4.Position.Auto = false;
+			chartArea4.Position.Height = 100F;
+			chartArea4.Position.Width = 100F;
+			this.Chart_Current.ChartAreas.Add(chartArea4);
+			legend4.Enabled = false;
+			legend4.Name = "Legend1";
+			legend4.Title = "电流";
+			this.Chart_Current.Legends.Add(legend4);
 			this.Chart_Current.Location = new System.Drawing.Point(732, 86);
 			this.Chart_Current.Name = "Chart_Current";
-			series2.BorderWidth = 2;
-			series2.ChartArea = "ChartArea1";
-			series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-			series2.Legend = "Legend1";
-			series2.Name = "Series1";
-			series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
-			this.Chart_Current.Series.Add(series2);
+			series4.BorderWidth = 2;
+			series4.ChartArea = "ChartArea1";
+			series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+			series4.Legend = "Legend1";
+			series4.Name = "Series1";
+			series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
+			this.Chart_Current.Series.Add(series4);
 			this.Chart_Current.Size = new System.Drawing.Size(520, 320);
 			this.Chart_Current.TabIndex = 0;
 			this.Chart_Current.Text = "Current";
@@ -294,7 +340,7 @@
 			this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.pictureBox3.Location = new System.Drawing.Point(50, 275);
 			this.pictureBox3.Name = "pictureBox3";
-			this.pictureBox3.Size = new System.Drawing.Size(400, 1);
+			this.pictureBox3.Size = new System.Drawing.Size(300, 1);
 			this.pictureBox3.TabIndex = 0;
 			this.pictureBox3.TabStop = false;
 			// 
@@ -310,7 +356,7 @@
 			// pictureBox4
 			// 
 			this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-			this.pictureBox4.Location = new System.Drawing.Point(450, 25);
+			this.pictureBox4.Location = new System.Drawing.Point(350, 25);
 			this.pictureBox4.Name = "pictureBox4";
 			this.pictureBox4.Size = new System.Drawing.Size(1, 250);
 			this.pictureBox4.TabIndex = 0;
@@ -319,20 +365,75 @@
 			// pictureBox1
 			// 
 			this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-			this.pictureBox1.Location = new System.Drawing.Point(400, 0);
+			this.pictureBox1.Location = new System.Drawing.Point(300, 0);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(100, 50);
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
 			// 
-			// richTextBox1
+			// label1
 			// 
-			this.richTextBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.richTextBox1.Location = new System.Drawing.Point(432, 412);
-			this.richTextBox1.Name = "richTextBox1";
-			this.richTextBox1.Size = new System.Drawing.Size(249, 376);
-			this.richTextBox1.TabIndex = 7;
-			this.richTextBox1.Text = "";
+			this.label1.AutoSize = true;
+			this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label1.Location = new System.Drawing.Point(231, 425);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(50, 25);
+			this.label1.TabIndex = 7;
+			this.label1.Text = "电压";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+			this.label2.Location = new System.Drawing.Point(231, 525);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(50, 25);
+			this.label2.TabIndex = 7;
+			this.label2.Text = "电流";
+			// 
+			// Label_Voltage
+			// 
+			this.Label_Voltage.AutoSize = true;
+			this.Label_Voltage.Font = new System.Drawing.Font("微软雅黑", 36F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.Label_Voltage.Location = new System.Drawing.Point(225, 450);
+			this.Label_Voltage.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+			this.Label_Voltage.Name = "Label_Voltage";
+			this.Label_Voltage.Size = new System.Drawing.Size(95, 62);
+			this.Label_Voltage.TabIndex = 8;
+			this.Label_Voltage.Text = "0.0";
+			// 
+			// Label_Current
+			// 
+			this.Label_Current.AutoSize = true;
+			this.Label_Current.Font = new System.Drawing.Font("微软雅黑", 36F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.Label_Current.Location = new System.Drawing.Point(225, 550);
+			this.Label_Current.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+			this.Label_Current.Name = "Label_Current";
+			this.Label_Current.Size = new System.Drawing.Size(95, 62);
+			this.Label_Current.TabIndex = 8;
+			this.Label_Current.Text = "0.0";
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Font = new System.Drawing.Font("微软雅黑", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label5.Location = new System.Drawing.Point(350, 450);
+			this.label5.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(59, 62);
+			this.label5.TabIndex = 8;
+			this.label5.Text = "V";
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Font = new System.Drawing.Font("微软雅黑", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+			this.label6.Location = new System.Drawing.Point(350, 550);
+			this.label6.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(61, 62);
+			this.label6.TabIndex = 8;
+			this.label6.Text = "A";
 			// 
 			// Form_Main
 			// 
@@ -340,7 +441,12 @@
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(255)))), ((int)(((byte)(240)))));
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
 			this.ClientSize = new System.Drawing.Size(1280, 800);
-			this.Controls.Add(this.richTextBox1);
+			this.Controls.Add(this.Label_Current);
+			this.Controls.Add(this.label6);
+			this.Controls.Add(this.label5);
+			this.Controls.Add(this.Label_Voltage);
+			this.Controls.Add(this.label2);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.Chart_Current);
 			this.Controls.Add(this.Panel_Sidebar);
@@ -365,6 +471,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
@@ -387,6 +494,11 @@
 		private System.Windows.Forms.PictureBox pictureBox2;
 		private System.Windows.Forms.PictureBox pictureBox4;
 		private System.Windows.Forms.PictureBox pictureBox1;
-		private System.Windows.Forms.RichTextBox richTextBox1;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label Label_Voltage;
+		private System.Windows.Forms.Label Label_Current;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label label6;
 	}
 }

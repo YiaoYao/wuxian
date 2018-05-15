@@ -25,6 +25,7 @@ namespace wuxian
 		private float[] xiaxian = { 0, 0, 0, 0 };
 		private float[] bianhong = new float[4];
 		public int s, h;
+		private int LabelRefreshCount = 0;
 
 		public Form_Main()
 		{
@@ -46,10 +47,18 @@ namespace wuxian
 			timerRefreshChart.Interval = 50;
 			timerRefreshChart.Tick += new EventHandler(timerRefreshChart_Tick);
 
+			VoltageSeries.ChartType = CurrentSeries.ChartType = SeriesChartType.SplineRange;
+			VoltageSeries.XValueType = CurrentSeries.XValueType = ChartValueType.Time;
+			VoltageSeries.BorderWidth = CurrentSeries.BorderWidth = 2;
+			VoltageSeries.Color = CurrentSeries.Color = Color.FromArgb(160, 0, 128, 255);
+			VoltageSeries.BackSecondaryColor = CurrentSeries.BackSecondaryColor = Color.FromArgb(40, 0, 128, 255);
+			VoltageSeries.BackGradientStyle = CurrentSeries.BackGradientStyle = GradientStyle.TopBottom;
 			Chart_Voltage.Series.Clear();
 			Chart_Current.Series.Clear();
 			Chart_Voltage.Series.Add(VoltageSeries);
 			Chart_Current.Series.Add(CurrentSeries);
+			Chart_Voltage.ChartAreas[0].AxisX.Enabled = Chart_Voltage.ChartAreas[0].AxisY.Enabled = AxisEnabled.False;
+			Chart_Current.ChartAreas[0].AxisX.Enabled = Chart_Current.ChartAreas[0].AxisY.Enabled = AxisEnabled.False;
 
 			dataSimulator.Panel_Main.Location = new Point(0, 460);
 			dataSimulator.Panel_Main.Visible = false;
@@ -94,8 +103,10 @@ namespace wuxian
 				}
 			}
 
+			Chart_Voltage.ChartAreas[0].AxisX.Enabled = Chart_Voltage.ChartAreas[0].AxisY.Enabled = AxisEnabled.True;
+			Chart_Current.ChartAreas[0].AxisX.Enabled = Chart_Current.ChartAreas[0].AxisY.Enabled = AxisEnabled.True;
 			Chart_Voltage.ChartAreas[0].AxisX.Minimum = Chart_Current.ChartAreas[0].AxisX.Minimum = timeNow.Subtract(timeInterval).ToOADate();
-			Chart_Current.ChartAreas[0].AxisX.Maximum = Chart_Current.ChartAreas[0].AxisX.Maximum = timeNow.ToOADate();
+			Chart_Voltage.ChartAreas[0].AxisX.Maximum = Chart_Current.ChartAreas[0].AxisX.Maximum = timeNow.ToOADate();
 			VoltageSeries.Points.Clear();
 			CurrentSeries.Points.Clear();
 			for (int i = startIndex; i < DataUnits.Length; i++)
@@ -206,41 +217,42 @@ namespace wuxian
 		public void chucun(DataUnit d1)
 		{
 			OleDbCommand oc = new OleDbCommand();
-			oc.CommandText = "insert into sjb(ybu,ybi,fbu,fbi,l,h,t,ms) values (" + d1.ToString() + ",'" + d1.Time.ToShortDateString() + "',"+d1.Time.TimeOfDay.TotalMilliseconds+")";
-			oc.Connection = c1;
+            //oc.CommandText = "insert into sjb(ybu,ybi,fbu,fbi,l,h,t,ms) values (" + d1.ToString() + ",'" + d1.Time.ToShortDateString() + "',"+d1.Time.TimeOfDay.TotalMilliseconds+")";
+            oc.CommandText = "insert into sjb(fbu,fbi,dcl,l,h,t,ms) values (" + d1.ToString() + ",'" + d1.Time.ToShortDateString() + "'," + d1.Time.TimeOfDay.TotalMilliseconds + ")";
+            oc.Connection = c1;
 			oc.Connection.Open();
 			oc.ExecuteNonQuery();
 			oc.Connection.Close();
-			for (int i = 0; i < 4; i++)
+			for (int i = 2; i < 4; i++)
 			{
 				bianhong[i] = 0;
 			}
-			if (d1.PrimaryVoltage > shangxian[0])
+			/*if (d1.Voltage > shangxian[0])
 			{
 				bianhong[0] = 1;
 			}
-			else if (d1.PrimaryVoltage < xiaxian[0])
+			else if (d1.Voltage < xiaxian[0])
 			{ bianhong[0] = 2; }
-			if (d1.PrimaryCurrent > shangxian[1])
+			if (d1.Current > shangxian[1])
 			{
 				bianhong[1] = 1;
 			}
-			else if (d1.PrimaryCurrent < xiaxian[1])
-			{ bianhong[1] = 2; }
-			if (d1.SecondaryVoltage > shangxian[2])
+			else if (d1.Current < xiaxian[1])
+			{ bianhong[1] = 2; }*/
+			if (d1.Voltage > shangxian[2])
 			{
 				bianhong[2] = 1;
 			}
-			else if (d1.SecondaryVoltage < xiaxian[2])
+			else if (d1.Voltage < xiaxian[2])
 			{ bianhong[2] = 2; }
-			if (d1.SecondaryCurrent > shangxian[3])
+			if (d1.Current > shangxian[3])
 			{
 				bianhong[3] = 1;
 			}
-			else if (d1.SecondaryCurrent < xiaxian[3])
+			else if (d1.Current < xiaxian[3])
 			{ bianhong[3] = 2; }
 			float p = 0;
-			for (int i = 0; i < 4; i++)
+			for (int i = 2; i < 4; i++)
 			{
 				p = p + bianhong[i];
 			}
@@ -251,13 +263,13 @@ namespace wuxian
 		public void guzhang(DataUnit d1, float[] b1)
 		{
 			OleDbCommand oc1 = new OleDbCommand();
-			oc1.CommandText = "insert into gzb(ybu,ybi,fbu,fbi,l,h,ybuu,ybii,fbuu,fbii,t,ms) values (" + d1.ToString() + ",";
-
-			for (int i = 0; i < 4; i++)
+            //oc1.CommandText = "insert into gzb(ybu,ybi,fbu,fbi,l,h,ybuu,ybii,fbuu,fbii,t,ms) values (" + d1.ToString() + ",";
+            oc1.CommandText = "insert into gzb(fbu,fbi,dcl,l,h,fbuu,fbii,t,ms) values (" + d1.ToString() + ",";
+            for (int i = 2; i < 4; i++)
 			{
 				oc1.CommandText = oc1.CommandText + b1[i] + ",";
 			}
-			oc1.CommandText = oc1.CommandText + "'" + d1.Time.ToShortDateString() + "'";
+			oc1.CommandText = oc1.CommandText + "'" + d1.Time.ToShortDateString() + "',";
 			oc1.CommandText = oc1.CommandText + (int)d1.Time.TimeOfDay.TotalMilliseconds;
 			oc1.CommandText = oc1.CommandText + ")";
 			oc1.Connection = c2;
@@ -268,23 +280,25 @@ namespace wuxian
 
 		public void xqmove(DataUnit d1)
 		{
-			s = (int)(d1.distance * 7.5);
-			h = (int)(d1.height * 7.5);
-			pictureBox2.Location = new Point(500 - s, h);
-			pictureBox3.Location = new Point(550 - s, 25 + h);
-			pictureBox3.Width = s;
-			pictureBox4.Height = h;
-		}
+            s = (int)(d1.Distance * 10);
+            //h = (int)(d1.Height * 10);
+            h = 200;
+            pictureBox2.Location = new Point(450 - s, h);
+            pictureBox3.Location = new Point(500 - s, 25 + h);
+            pictureBox3.Width = s - 150;
+            pictureBox4.Height = h;
+        }
 		public void cm()
 		{
 			chucun(StateControl.d1);
 			xqmove(StateControl.d1);
-			char[] c = StateControl.value.ToCharArray();
-			foreach (char i in c)
+			LabelRefreshCount += StateControl.TimerGetData.Interval;
+			if (LabelRefreshCount >= 500)
 			{
-				richTextBox1.Text += string.Format("0x{0:x} ", i);
+				Label_Voltage.Text = string.Format("{0:N1}", StateControl.d1.Voltage);
+				Label_Current.Text = string.Format("{0:N1}", StateControl.d1.Current);
+				LabelRefreshCount = 0;
 			}
-			richTextBox1.Text += Environment.NewLine;
 		}
 	}
 }

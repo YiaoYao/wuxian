@@ -52,7 +52,7 @@ namespace wuxian
 		private SerialPort SelectedSerialPort = new SerialPort();
 		private Form_SerialPortSetting.SerialPortConfig SelectedSerialConfig;
 		private string[] SerialPortList = new string[0];
-		private Timer TimerGetData = new Timer();
+		public Timer TimerGetData = new Timer();
 		public List<DataUnit> DataUnits = new List<DataUnit>(240);
 		public DataUnit d1 = new DataUnit();
 

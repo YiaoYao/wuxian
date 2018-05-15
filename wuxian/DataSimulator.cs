@@ -23,7 +23,9 @@ namespace wuxian
 		public Panel Panel_Main = new Panel();
 		private ComboBox ComboBox_SerialPortList = new ComboBox();
 		private Button Button_Open = new Button();
-
+		private Button Button_forward = new Button();
+		private Button Button_backward = new Button();
+		private double l;
 
 		public DataSimulator()
 		{
@@ -54,10 +56,14 @@ namespace wuxian
 			Button_Open.Size = new Size(71, 33);
 			Button_Open.Text = "打开";
 
+			//Button_forward.Location=new Point()
+
 			Panel_Main.Controls.Add(ComboBox_SerialPortList);
 			Panel_Main.Controls.Add(Button_Open);
 
 			RefreshSerialPortList();
+
+			l = 12.0;
 		}
 
 		private void RefreshSerialPortList()
@@ -117,7 +123,7 @@ namespace wuxian
 			{
 				for (int i = 0; i < 5; i++)
 				{
-					data[i] = GenerateGaussianNoise(12.0 + i, 0.1);
+					data[i] = GenerateGaussianNoise(11.0 + i, 0.04);
 				}
 				destinationPort.Write(String.Format("{0:N2},{1:N2},{2:N2},{3:N2},{4:N2}", data[0], data[1], data[2], data[3], data[4]) + Environment.NewLine);
 			}
